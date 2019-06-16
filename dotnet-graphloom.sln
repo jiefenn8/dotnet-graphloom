@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-graphloom", "dotnet-graphloom\dotnet-graphloom.csproj", "{412E3E65-D132-41E0-99E5-36ABE196F93E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-graphloom.UnitTest", "dotnet-graphloom.UnitTest\dotnet-graphloom.UnitTest.csproj", "{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{412E3E65-D132-41E0-99E5-36ABE196F93E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412E3E65-D132-41E0-99E5-36ABE196F93E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412E3E65-D132-41E0-99E5-36ABE196F93E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412E3E65-D132-41E0-99E5-36ABE196F93E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {140D2D51-0B1A-4C28-9EBD-313B006ECFBB}
+	EndGlobalSection
+EndGlobal
