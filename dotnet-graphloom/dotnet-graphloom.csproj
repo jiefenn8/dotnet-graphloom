@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>GraphLoom</RootNamespace>
+    <RootNamespace>GraphLoom.Mapper</RootNamespace>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
@@ -10,7 +10,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Version>0.1.0</Version>
     <PackageProjectUrl>https://github.com/jiefenn8/dotnet-graphloom</PackageProjectUrl>
-    <AssemblyName>GraphLoom</AssemblyName>
+    <AssemblyName>GraphLoom.Core</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
