@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace GraphLoom.Mapper.RDF
 {
-    public class RDFUriFactory
+    public class UriFactory
     {
         private static Regex TemplateRegex = new Regex("{(.*?)}", RegexOptions.Compiled);
 

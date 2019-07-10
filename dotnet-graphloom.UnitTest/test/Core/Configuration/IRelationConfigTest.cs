@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
-    [TestFixture]
     public class IRelationConfigTest<T> where T : IRelationConfig, new()
     {
         private IRelationConfig RelationConfig;

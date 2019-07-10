@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
-    [TestFixture]
     public class IObjectsConfigTest<T> where T : IObjectsConfig, new()
     {
         private IObjectsConfig ObjectsConfig;

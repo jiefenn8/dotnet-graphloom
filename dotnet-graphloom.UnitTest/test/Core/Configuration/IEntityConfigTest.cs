@@ -3,7 +3,6 @@ using NUnit.Framework;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
-    [TestFixture]
     public class IEntityConfigTest<T> where T : IEntityConfig, new()
     {
         private IEntityConfig EntityConfig;

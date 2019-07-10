@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
-    [TestFixture]
     public class IStatementsConfigTest<T> where T : IStatementsConfig, new()
     {
         private IStatementsConfig StatementsConfig;

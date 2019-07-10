@@ -1,26 +1,22 @@
 ﻿using GraphLoom.Mapper.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using VDS.RDF;
 
 namespace GraphLoom.Mapper.RDF
 {
-    public class RDFStatementsAssembler
+    public class TriplesAssembler : BaseStatementAssembler<VDSGraph>
     {
-        private IGraph SubjectGraph;
-        private bool Cancelled = false;
-     
-        public virtual IGraph AssembleSubjectStatements(IInputSource input, IStatementsConfig entityMap, INamespaceMapper nsMap)
+        public override IGenericGraph AssembleEntityStatements(IInputSource input, IStatementsConfig entityMap, IDictionary<string, string> nsMap)
         {
             Cancelled = false;
-            SubjectGraph = new Graph();
-            SubjectGraph.NamespaceMap.Import(nsMap);
+            SubjectGraph = new VDSGraph();
+            SubjectGraph.NamespaceMap.Import(NamespaceHelper.ToIGraphNamespaceMap(nsMap));
             foreach (IDictionary<string, string> row in input.GetEntityRecords(entityMap.GetSourceName()))
             {
                 if (Cancelled) break;
 
-                Uri subjectURI = RDFUriFactory.FromTemplate(entityMap.GetTemplate(), row);
+                Uri subjectURI = UriFactory.FromTemplate(entityMap.GetTemplate(), row);
                 if (subjectURI == null) break;
 
                 IUriNode subject = SubjectGraph.CreateUriNode(subjectURI);
@@ -31,6 +27,8 @@ namespace GraphLoom.Mapper.RDF
             return SubjectGraph;
         }
 
+        public override void StopTask() => Cancelled = true;
+
         private void AssemblePredicateObjectsStatements(IUriNode subject, IDictionary<string, string> row, List<IRelationConfig> relationConfigs)
         {
             relationConfigs.ForEach(relationConfig =>
@@ -39,11 +37,6 @@ namespace GraphLoom.Mapper.RDF
                 INode obj = SubjectGraph.CreateLiteralNode(row[relationConfig.GetSourceName()]);
                 SubjectGraph.Assert(subject, predicate, obj);
             });
-        }
-
-        public virtual void StopTask()
-        {
-            Cancelled = true;
-        }
+        } 
     }
 }

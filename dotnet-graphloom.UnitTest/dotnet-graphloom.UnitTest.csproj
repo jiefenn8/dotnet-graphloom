@@ -10,8 +10,8 @@
     <ProjectGuid>{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dotnet_graphloom.UnitTest</RootNamespace>
-    <AssemblyName>dotnet-graphloom.UnitTest</AssemblyName>
+    <RootNamespace>GraphLoom.UnitTest</RootNamespace>
+    <AssemblyName>GraphLoom.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -87,10 +87,13 @@
     <Compile Include="test\Core\Configuration\IRelationConfigTest.cs" />
     <Compile Include="test\Core\Configuration\ISourceConfigTest.cs" />
     <Compile Include="test\Core\Configuration\IStatementsConfigTest.cs" />
-    <Compile Include="test\RDF\RDFGraphMapperTest.cs" />
+    <Compile Include="test\Core\IGenericGraphTest.cs" />
+    <Compile Include="test\Core\IGraphMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="test\RDF\RDFStatementsAssemblerTest.cs" />
-    <Compile Include="test\RDF\RDFUriFactoryTest.cs" />
+    <Compile Include="test\Core\IStatementAssemblerTest.cs" />
+    <Compile Include="test\RDF\NamespaceHelperTest.cs" />
+    <Compile Include="test\RDF\RDFMapperFactoryTest.cs" />
+    <Compile Include="test\RDF\UriFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -101,7 +104,6 @@
       <Name>dotnet-graphloom</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
