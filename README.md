@@ -2,7 +2,7 @@
 
 A .NET standard implementation of a RDB to Semantic Graph mapping API. 
 
-[![Build Status](https://travis-ci.org/jiefenn8/dotnet-graphloom.svg?branch=master)](https://travis-ci.org/jiefenn8/dotnet-graphloom)[![codecov](https://codecov.io/gh/jiefenn8/dotnet-graphloom/branch/master/graph/badge.svg)](https://codecov.io/gh/jiefenn8/dotnet-graphloom)[![Apache 2.0 License](https://img.shields.io/badge/license-apache2-green.svg) ](https://github.com/jiefenn8/dotnet-graphloom/blob/master/LICENSE.md)
+[![Build status](https://ci.appveyor.com/api/projects/status/pd813dcsc96n675m?svg=true)](https://ci.appveyor.com/project/jiefenn8/dotnet-graphloom)[![codecov](https://codecov.io/gh/jiefenn8/dotnet-graphloom/branch/master/graph/badge.svg)](https://codecov.io/gh/jiefenn8/dotnet-graphloom)[![Apache 2.0 License](https://img.shields.io/badge/license-apache2-green.svg) ](https://github.com/jiefenn8/dotnet-graphloom/blob/master/LICENSE.md)
 
 ## Description
 
@@ -16,7 +16,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-To be announced
+ * GraphLoom.Core - .NET Standard 2.0
+ * GraphLoom test - .NET Framework 4.7.2 
+ * [Nuget](https://www.nuget.org/) for package handling.
 
 ### Installation
 
@@ -28,7 +30,22 @@ git clone https://github.com/jiefenn8/dotnet-graphloom.git
 
 ### Usage example
 
-To be done
+```
+//Quick example to RDF graph
+using GraphLoom.Mapper;
+using GraphLoom.Mapper.RDF;
+using GraphLoom.Mappoer.Configuration;
+
+//Declare and initalise required implementations
+IInputSource InputSource = new YourInputSourceImpl();
+IMapperConfig MapperConfig = new YouMapperConfigImpl(); 
+
+//Map data
+IGraphMapper RDFMapper = RDFMapperFactory.createDefaultRDFMapper();
+IGenericGraph output = RDFMapper.MapToGraph(InputSource, MapperConfig);
+
+//Rest of your code handling output. e.g. To file or graph database
+```
 
 ### Plans
 
@@ -36,7 +53,7 @@ To be done
 * Add graph RDF file output support
 * Add graph to graph-db/triplestore support
 * Add [RML](rml.io) implementation (JSON, CSV and XML data source)
-* Remove dependency from Jena to Common RDF
+* Add Label Property Graph implementation
 
 ## Built With
 
