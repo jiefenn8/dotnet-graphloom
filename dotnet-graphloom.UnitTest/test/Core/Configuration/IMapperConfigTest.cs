@@ -1,10 +1,12 @@
 ﻿using GraphLoom.Mapper.Configuration;
+using GraphLoom.Mapper.RDF.R2RML;
 using Moq;
 using NUnit.Framework;
 using System.Linq;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
+    [TestFixture(typeof(R2RMLMap))]
     public class IMapperConfigTest<T> where T : IMapperConfig, new()
     {
         private IMapperConfig MapperConfig;

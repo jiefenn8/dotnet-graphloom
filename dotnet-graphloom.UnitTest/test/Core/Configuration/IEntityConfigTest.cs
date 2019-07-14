@@ -1,8 +1,10 @@
 ﻿using GraphLoom.Mapper.Configuration;
+using GraphLoom.Mapper.RDF.Configuration;
 using NUnit.Framework;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
+    [TestFixture(typeof(TriplesMap))]
     public class IEntityConfigTest<T> where T : IEntityConfig, new()
     {
         private IEntityConfig EntityConfig;

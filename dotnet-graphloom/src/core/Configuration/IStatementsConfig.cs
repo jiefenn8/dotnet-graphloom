@@ -5,8 +5,8 @@ namespace GraphLoom.Mapper.Configuration
 {
     public interface IStatementsConfig : ISourceConfig, IEntityConfig
     {
-        IDictionary<IRelationConfig, IObjectsConfig> GetRelationObjectConfigPairs();
-        void AddRelationObjectConfigPair(IRelationConfig relationConfig, IObjectsConfig objectsConfig);
+        IDictionary<IRelationConfig, IObjectsConfig> GetRelationObjectConfigs();
+        void AddRelationObjectConfig(IRelationConfig relationConfig, IObjectsConfig objectsConfig);
 
     }
 }

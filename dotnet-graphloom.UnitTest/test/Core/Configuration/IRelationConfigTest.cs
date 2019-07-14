@@ -1,4 +1,5 @@
 ﻿using GraphLoom.Mapper.Configuration;
+using GraphLoom.Mapper.RDF.R2RML;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
+    [TestFixture(typeof(PredicateMap))]
     public class IRelationConfigTest<T> where T : IRelationConfig, new()
     {
         private IRelationConfig RelationConfig;

@@ -16,27 +16,26 @@ namespace GraphLoom.Mapper.RDF
             {
                 if (Cancelled) break;
 
-                Uri subjectURI = UriFactory.FromTemplate(entityMap.GetTemplate(), row);
+                Uri subjectURI = URIFactory.FromTemplate(entityMap.GetTemplate(), row);
                 if (subjectURI == null) break;
 
                 IUriNode subject = SubjectGraph.CreateUriNode(subjectURI);
                 SubjectGraph.Assert(subject, SubjectGraph.CreateUriNode("rdf:type"), SubjectGraph.CreateUriNode(entityMap.GetClassName()));
 
-                AssemblePredicateObjectsStatements(subject, row, entityMap.ListRelationConfigs());
+                AssemblePredicateObjectsStatements(subject, row, entityMap.GetRelationObjectConfigs());
             }
             return SubjectGraph;
         }
 
         public override void StopTask() => Cancelled = true;
 
-        private void AssemblePredicateObjectsStatements(IUriNode subject, IDictionary<string, string> row, List<IRelationConfig> relationConfigs)
-        {
-            relationConfigs.ForEach(relationConfig =>
-            {
-                IUriNode predicate = SubjectGraph.CreateUriNode(relationConfig.GetRelationName());
-                INode obj = SubjectGraph.CreateLiteralNode(row[relationConfig.GetSourceName()]);
+        private void AssemblePredicateObjectsStatements(IUriNode subject, IDictionary<string, string> row, IDictionary<IRelationConfig, IObjectsConfig> predicateObjectMap)
+        { 
+            foreach(KeyValuePair<IRelationConfig, IObjectsConfig> pair in predicateObjectMap){
+                IUriNode predicate = SubjectGraph.CreateUriNode(pair.Key.GetRelationName());
+                INode obj = SubjectGraph.CreateLiteralNode(row[pair.Value.GetSourceName()]);
                 SubjectGraph.Assert(subject, predicate, obj);
-            });
+            }
         } 
     }
 }

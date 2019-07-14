@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GraphLoom.UnitTest.Mapper.RDF
 {
     [TestFixture]
-    public class UriFactoryTest
+    public class URIFactoryTest
     {
         private IDictionary<string, string> row;
 
@@ -29,7 +29,7 @@ namespace GraphLoom.UnitTest.Mapper.RDF
         public void WhenCreateUriFromTemplateSucceed_ShouldReturnExpectedURI()
         {
             Uri expResult = new Uri("http://www.example.org/employee/7369");
-            Uri result = UriFactory.FromTemplate("http://www.example.org/employee/{EMPNO}", row);
+            Uri result = URIFactory.FromTemplate("http://www.example.org/employee/{EMPNO}", row);
             Assert.That(result, Is.EqualTo(expResult));
         }
 
@@ -37,7 +37,7 @@ namespace GraphLoom.UnitTest.Mapper.RDF
         public void WhenCreateUriFromStringSucceed_ShouldReturnExpectedURI()
         {
             Uri expResult = new Uri("http://www.example.org/");
-            Uri result = UriFactory.FromString("http://www.example.org/");
+            Uri result = URIFactory.FromString("http://www.example.org/");
             Assert.That(result, Is.EqualTo(expResult));
         }
     

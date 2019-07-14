@@ -48,7 +48,7 @@ namespace GraphLoom.UnitTest.Mapper
             IObjectsConfig objectsConfigMock = Mock.Of<IObjectsConfig>();
             Mock.Get(objectsConfigMock).Setup(f => f.GetSourceName()).Returns("ENAME");
             Mock.Get(StatementsConfigMock).Setup(f => f.GetClassName()).Returns("ex:Employee");
-            Mock.Get(StatementsConfigMock).Setup(f => f.GetRelationObjectConfigPairs()).Returns(new Dictionary<IRelationConfig, IObjectsConfig>() { { relationConfigMock, objectsConfigMock } });
+            Mock.Get(StatementsConfigMock).Setup(f => f.GetRelationObjectConfigs()).Returns(new Dictionary<IRelationConfig, IObjectsConfig>() { { relationConfigMock, objectsConfigMock } });
             Mock.Get(StatementsConfigMock).Setup(f => f.GetTemplate()).Returns("http://www.example.org/employee/{EMPNO}");
         }
 

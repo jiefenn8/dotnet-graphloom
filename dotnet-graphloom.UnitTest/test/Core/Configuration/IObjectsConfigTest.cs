@@ -1,4 +1,5 @@
 ﻿using GraphLoom.Mapper.Configuration;
+using GraphLoom.Mapper.RDF.R2RML;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
+    [TestFixture(typeof(ObjectMap))]
     public class IObjectsConfigTest<T> where T : IObjectsConfig, new()
     {
         private IObjectsConfig ObjectsConfig;
