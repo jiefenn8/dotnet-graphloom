@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GraphLoom.Mapper.Configuration
 {
-    public interface IRelationConfig : IObjectsConfig
+    public interface IRelationConfig
     {
         string GetRelationName();
         void SetRelationName(string relation);

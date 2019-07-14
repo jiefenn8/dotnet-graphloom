@@ -18,8 +18,8 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
         [Test]
         public void WhenHaveStatementsConfigs_ShouldReturnPopulatedList()
         {
-            StatementsConfig.AddRelationConfig(Mock.Of<IRelationConfig>());
-            bool result = StatementsConfig.ListRelationConfigs().Any();
+            StatementsConfig.AddRelationObjectConfigPair(Mock.Of<IRelationConfig>(), Mock.Of<IObjectsConfig>());
+            bool result = StatementsConfig.GetRelationObjectConfigPairs().Any();
             Assert.That(result, Is.True);
         }
     }
