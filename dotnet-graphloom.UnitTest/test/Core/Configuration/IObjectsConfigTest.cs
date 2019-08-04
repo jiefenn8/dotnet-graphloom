@@ -12,20 +12,20 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
     [TestFixture(typeof(ObjectMap))]
     public class IObjectsConfigTest<T> where T : IObjectsConfig, new()
     {
-        private IObjectsConfig ObjectsConfig;
+        private IObjectsConfig _objectsConfig;
 
         [SetUp]
         public void SetUp()
         {
-            ObjectsConfig = new T();
+            _objectsConfig = new T();
         }
 
         [Test]
         public void WhenHaveSourceName_ShouldReturnPopulatedString()
         {
             string objectName = "object_name";
-            ObjectsConfig.SetSourceName(objectName);
-            string result = ObjectsConfig.GetSourceName();
+            _objectsConfig.SetSourceName(objectName);
+            string result = _objectsConfig.GetSourceName();
             Assert.That(result, Is.EqualTo(objectName));
         }
     }

@@ -7,20 +7,20 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
     [TestFixture(typeof(TriplesMap))]
     public class IEntityConfigTest<T> where T : IEntityConfig, new()
     {
-        private IEntityConfig EntityConfig;
+        private IEntityConfig _entityConfig;
 
         [SetUp]
         public void SetUp()
         {
-            EntityConfig = new T();
+            _entityConfig = new T();
         }
 
         [Test]
         public void WhenHaveTemplate_ShouldReturnPopulatedString()
         {
             string template = "template";
-            EntityConfig.SetTemplate(template);
-            string result = EntityConfig.GetTemplate();
+            _entityConfig.SetTemplate(template);
+            string result = _entityConfig.GetTemplate();
             Assert.That(result, Is.EqualTo(template));
         }
 
@@ -28,8 +28,8 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
         public void WhenHaveClassName_ShouldReturnPopulatedString()
         {
             string className = "class_name";
-            EntityConfig.SetClassName(className);
-            string result = EntityConfig.GetClassName();
+            _entityConfig.SetClassName(className);
+            string result = _entityConfig.GetClassName();
             Assert.That(result, Is.EqualTo(className));
         }
     }

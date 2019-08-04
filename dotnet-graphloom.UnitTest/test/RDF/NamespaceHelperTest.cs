@@ -12,12 +12,12 @@ namespace GraphLoom.UnitTest.Mapper.RDF
     [TestFixture]
     public class NamespaceHelperTest
     {
-        private NamespaceHelper NamespaceHelper; 
+        private NamespaceHelper _namespaceHelper; 
 
         [SetUp]
         public void SetUp()
         {
-            NamespaceHelper = new NamespaceHelper();
+            _namespaceHelper = new NamespaceHelper();
         }
 
         [Test]

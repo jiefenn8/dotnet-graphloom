@@ -7,15 +7,15 @@ namespace GraphLoom.Mapper.RDF.R2RML
 {
     public class PredicateMap : IRelationConfig
     {
-        private string PredicateName;
+        private string _predicateName;
         public string GetRelationName()
         {
-            return PredicateName;
+            return _predicateName;
         }
 
         public void SetRelationName(string relation)
         {
-            PredicateName = relation;
+            _predicateName = relation;
         }
     }
 }

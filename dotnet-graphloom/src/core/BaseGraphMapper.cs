@@ -5,29 +5,29 @@ namespace GraphLoom.Mapper
 {
     public abstract class BaseGraphMapper<T> : IGraphMapper where T : IGenericGraph, new()
     {
-        protected IStatementAssembler StmtAssembler;
-        protected bool Cancelled = false;
+        protected IStatementAssembler statementAssembler;
+        protected bool cancelled = false;
 
         private BaseGraphMapper() { }
 
         public BaseGraphMapper(IStatementAssembler assembler)
         {
-            StmtAssembler = assembler;
+            statementAssembler = assembler;
         }
 
         public virtual IGenericGraph MapToGraph(IInputSource source, IMapperConfig config)
         {
             IGenericGraph OutputGraph = new T();
 
-            Cancelled = false;
+            cancelled = false;
             foreach(IStatementsConfig entityConfig in config.ListStatementsConfigs())
             {
-                if (Cancelled)
+                if (cancelled)
                 {
-                    StmtAssembler.StopTask();
+                    statementAssembler.StopTask();
                     break;
                 }
-                OutputGraph.Merge(StmtAssembler.AssembleEntityStatements(source, entityConfig, config.ListNamespaces()));
+                OutputGraph.Merge(statementAssembler.AssembleEntityStatements(source, entityConfig, config.ListNamespaces()));
             }
 
             return OutputGraph;
@@ -35,6 +35,6 @@ namespace GraphLoom.Mapper
 
         public Type GetGraphType() => typeof(T);
 
-        public virtual void StopTask() => Cancelled = true;
+        public virtual void StopTask() => cancelled = true;
     }
 }

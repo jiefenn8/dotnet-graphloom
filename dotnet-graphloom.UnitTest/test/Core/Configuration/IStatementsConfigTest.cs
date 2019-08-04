@@ -9,19 +9,19 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
     [TestFixture(typeof(TriplesMap))]
     public class IStatementsConfigTest<T> where T : IStatementsConfig, new()
     {
-        private IStatementsConfig StatementsConfig;
+        private IStatementsConfig _statementsConfig;
 
         [SetUp]
         public void SetUp()
         {
-            StatementsConfig = new T();
+            _statementsConfig = new T();
         }
 
         [Test]
         public void WhenHaveStatementsConfigs_ShouldReturnPopulatedList()
         {
-            StatementsConfig.AddRelationObjectConfig(Mock.Of<IRelationConfig>(), Mock.Of<IObjectsConfig>());
-            bool result = StatementsConfig.GetRelationObjectConfigs().Any();
+            _statementsConfig.AddRelationObjectConfig(Mock.Of<IRelationConfig>(), Mock.Of<IObjectsConfig>());
+            bool result = _statementsConfig.GetRelationObjectConfigs().Any();
             Assert.That(result, Is.True);
         }
     }

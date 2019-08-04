@@ -10,19 +10,19 @@ namespace GraphLoom.UnitTest.Mapper
     [TestFixture(typeof(TriplesAssembler))]
     public class IStatementAssemblerTest<T> where T : IStatementAssembler, new()
     {
-        private IStatementAssembler StatementAssembler;
-        private IInputSource InputSourceMock;
-        private IStatementsConfig StatementsConfigMock;
-        private IDictionary<string, string> FakeNamespaceMap;
+        private IStatementAssembler _statementAssembler;
+        private IInputSource _mockInputSource;
+        private IStatementsConfig _mockStatementsConfig;
+        private IDictionary<string, string> _fakeNamespaceMap;
 
         [SetUp]
         public void SetUp()
         {
-            StatementAssembler = new T();
-            InputSourceMock = Mock.Of<IInputSource>();
-            StatementsConfigMock = Mock.Of<IStatementsConfig>();
+            _statementAssembler = new T();
+            _mockInputSource = Mock.Of<IInputSource>();
+            _mockStatementsConfig = Mock.Of<IStatementsConfig>();
 
-            Mock.Get(InputSourceMock).Setup(f => f.GetEntityRecords(It.IsAny<string>()))
+            Mock.Get(_mockInputSource).Setup(f => f.GetEntityRecords(It.IsAny<string>()))
                 .Returns(
                     new List<IDictionary<string, string>>()
                     {
@@ -37,7 +37,7 @@ namespace GraphLoom.UnitTest.Mapper
                     }
                 );
 
-            FakeNamespaceMap = new Dictionary<string, string>()
+            _fakeNamespaceMap = new Dictionary<string, string>()
             {
                 { "rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
                 { "ex", "http://www.example.org/ns#" }
@@ -47,15 +47,15 @@ namespace GraphLoom.UnitTest.Mapper
             Mock.Get(relationConfigMock).Setup(f => f.GetRelationName()).Returns("ex:name");
             IObjectsConfig objectsConfigMock = Mock.Of<IObjectsConfig>();
             Mock.Get(objectsConfigMock).Setup(f => f.GetSourceName()).Returns("ENAME");
-            Mock.Get(StatementsConfigMock).Setup(f => f.GetClassName()).Returns("ex:Employee");
-            Mock.Get(StatementsConfigMock).Setup(f => f.GetRelationObjectConfigs()).Returns(new Dictionary<IRelationConfig, IObjectsConfig>() { { relationConfigMock, objectsConfigMock } });
-            Mock.Get(StatementsConfigMock).Setup(f => f.GetTemplate()).Returns("http://www.example.org/employee/{EMPNO}");
+            Mock.Get(_mockStatementsConfig).Setup(f => f.GetClassName()).Returns("ex:Employee");
+            Mock.Get(_mockStatementsConfig).Setup(f => f.GetRelationObjectConfigs()).Returns(new Dictionary<IRelationConfig, IObjectsConfig>() { { relationConfigMock, objectsConfigMock } });
+            Mock.Get(_mockStatementsConfig).Setup(f => f.GetTemplate()).Returns("http://www.example.org/employee/{EMPNO}");
         }
 
         [Test]
         public void WhenAssembleStatementsInvoked_ShouldReturnGraph()
         {
-            IGenericGraph result = StatementAssembler.AssembleEntityStatements(InputSourceMock, StatementsConfigMock, FakeNamespaceMap);
+            IGenericGraph result = _statementAssembler.AssembleEntityStatements(_mockInputSource, _mockStatementsConfig, _fakeNamespaceMap);
             Assert.That(result, Is.Not.Null);
         }
 

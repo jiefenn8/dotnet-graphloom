@@ -7,20 +7,20 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
     [TestFixture(typeof(TriplesMap))]
     public class ISourceConfigTest<T> where T : ISourceConfig, new()
     {
-        private ISourceConfig SourceConfig;
+        private ISourceConfig _sourceConfig;
 
         [SetUp]
         public void SetUp()
         {
-            SourceConfig = new T();
+            _sourceConfig = new T();
         }
 
         [Test]
         public void WhenHaveSourceName_ShouldReturnPopulatedString()
         {
             string sourceName = "source_name";
-            SourceConfig.SetSourceName(sourceName);
-            string result = SourceConfig.GetSourceName();
+            _sourceConfig.SetSourceName(sourceName);
+            string result = _sourceConfig.GetSourceName();
             Assert.That(result, Is.EqualTo(sourceName));
         }
 

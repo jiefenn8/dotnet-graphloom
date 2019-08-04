@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GraphLoom.Mapper.Configuration
+﻿namespace GraphLoom.Mapper.Configuration
 {
     public interface IRelationConfig
     {

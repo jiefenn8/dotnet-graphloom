@@ -12,21 +12,21 @@ namespace GraphLoom.UnitTest.Mapper
     [TestFixture(typeof(RDFGraphMapper))]
     public class IGraphMapperTest<T> where T : IGraphMapper
     {
-        private IGraphMapper GraphMapper;
-        private IInputSource InputSourceMock;
-        private IMapperConfig MapperConfigMock;
+        private IGraphMapper _graphMapper;
+        private IInputSource _mockInputSource;
+        private IMapperConfig _mockMapperConfig;
 
         [SetUp]
         public void SetUp()
         {
             //Mock creation
-            InputSourceMock = Mock.Of<IInputSource>();
-            MapperConfigMock = Mock.Of<IMapperConfig>();
+            _mockInputSource = Mock.Of<IInputSource>();
+            _mockMapperConfig = Mock.Of<IMapperConfig>();
             IStatementsConfig statementsConfig = Mock.Of<IStatementsConfig>();
             IStatementAssembler assemblerMock = Mock.Of<IStatementAssembler>();
 
             //Mock setups
-            Mock.Get(MapperConfigMock)
+            Mock.Get(_mockMapperConfig)
                 .Setup(f => f.ListNamespaces())
                 .Returns(new Dictionary<string, string>()
                 {
@@ -34,16 +34,16 @@ namespace GraphLoom.UnitTest.Mapper
                     { "prefix2", "ns2" }
                 });
 
-            Mock.Get(MapperConfigMock)
+            Mock.Get(_mockMapperConfig)
                 .Setup(f => f.ListStatementsConfigs())
                 .Returns(new List<IStatementsConfig>() { statementsConfig });
 
             //Instance creation
             BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            GraphMapper = (T)Activator.CreateInstance(typeof(T), flags, null, new object[] {assemblerMock}, null);
+            _graphMapper = (T)Activator.CreateInstance(typeof(T), flags, null, new object[] {assemblerMock}, null);
 
             //Fake setup
-            IGenericGraph fakeGraph = (IGenericGraph)Activator.CreateInstance(GraphMapper.GetGraphType());
+            IGenericGraph fakeGraph = (IGenericGraph)Activator.CreateInstance(_graphMapper.GetGraphType());
 
             //Mock setup
             Mock.Get(assemblerMock)
@@ -58,7 +58,7 @@ namespace GraphLoom.UnitTest.Mapper
         public void WhenMappingSucceed_ShouldReturnGraph()
         {
             
-            IGenericGraph result = GraphMapper.MapToGraph(InputSourceMock, MapperConfigMock);
+            IGenericGraph result = _graphMapper.MapToGraph(_mockInputSource, _mockMapperConfig);
             Assert.That(result, Is.Not.Null);
         }
     }

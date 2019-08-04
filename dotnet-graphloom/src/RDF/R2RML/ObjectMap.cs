@@ -7,15 +7,15 @@ namespace GraphLoom.Mapper.RDF.R2RML
 {
     public class ObjectMap : IObjectsConfig
     {
-        private string SourceName;
+        private string _sourceName;
         public string GetSourceName()
         {
-            return SourceName;
+            return _sourceName;
         }
 
         public void SetSourceName(string source)
         {
-            SourceName = source;
+            _sourceName = source;
         }
     }
 }

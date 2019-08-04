@@ -3,7 +3,6 @@ using GraphLoom.Mapper.RDF.Wrapper;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using VDS.RDF;
@@ -14,15 +13,15 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     [TestFixture]
     public class R2RMLParserTest
     {
-        private R2RMLParser Parser;
+        private R2RMLParser _r2rmlParser;
         private IRdfLoader _rdfLoader;
         private TurtleParser _turtleParser;
 
-        private readonly Uri BaseUri = new Uri("http://www.example.com");
-        private readonly string DirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        private readonly string ValidFile = "/TestData/valid_r2rml.ttl";
-        private readonly string EmptyFile = "/TestData/empty_r2rml.ttl";
-        private readonly string PrefixOnlyFile = "/TestData/only_prefix_r2rml.ttl";
+        private readonly Uri _baseUri = new Uri("http://www.example.com");
+        private readonly string _dirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private readonly string _validFile = "/TestData/valid_r2rml.ttl";
+        private readonly string _emptyFile = "/TestData/empty_r2rml.ttl";
+        private readonly string _prefixOnlyFIle = "/TestData/only_prefix_r2rml.ttl";
 
         [SetUp]
         public void SetUp()
@@ -30,16 +29,16 @@ namespace GraphLoom.UnitTest.RDF.R2RML
 
             _rdfLoader = Mock.Of<IRdfLoader>();
             _turtleParser = Mock.Of<TurtleParser>();
-            Parser = new R2RMLParser(_rdfLoader, _turtleParser);
+            _r2rmlParser = new R2RMLParser(_rdfLoader, _turtleParser);
 
-            Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), It.Is<string>(s => !s.Equals(DirPath + EmptyFile)), _turtleParser)).Throws<FileNotFoundException>();
-            Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), DirPath + PrefixOnlyFile, _turtleParser))
+            Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), It.Is<string>(s => !s.Equals(_dirPath + _emptyFile)), _turtleParser)).Throws<FileNotFoundException>();
+            Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), _dirPath + _prefixOnlyFIle, _turtleParser))
                 .Callback<IGraph, string, IRdfReader>((graph, filename, rdfReader) =>
                 {
                     graph.NamespaceMap.AddNamespace("rr", UriFactory.Create("http://www.w3.org/ns/r2rml#"));
                     graph.NamespaceMap.AddNamespace("ex", UriFactory.Create("http://www.example.com/ns#"));
                 });
-            Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), DirPath + ValidFile, _turtleParser))
+            Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), _dirPath + _validFile, _turtleParser))
                 .Callback<IGraph, string, IRdfReader>((graph, filename, rdfReader) => 
                 {
                     if(graph.IsEmpty && graph.BaseUri == null) graph.BaseUri = UriFactory.Create("file:///" + filename);
@@ -58,27 +57,27 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         [Test]
         public void WhenGivenValidFilePath_ShouldReturnR2RMLMap()
         {
-            R2RMLMap result = Parser.Parse(DirPath + ValidFile, BaseUri);
+            R2RMLMap result = _r2rmlParser.Parse(_dirPath + _validFile, _baseUri);
             Assert.That(result, Is.Not.Null);
         }
 
         [Test]
         public void WhenGivenInvalidFilePath_ShouldThrowException()
         {
-            Assert.Throws<FileNotFoundException>(() => Parser.Parse("invalid_filepath.ttl", BaseUri));
+            Assert.Throws<FileNotFoundException>(() => _r2rmlParser.Parse("invalid_filepath.ttl", _baseUri));
         }
 
         [Test]
         public void WhenGivenEmptyFileData_ShouldReturnNull()
         {
-            R2RMLMap result = Parser.Parse(DirPath + EmptyFile, BaseUri);
+            R2RMLMap result = _r2rmlParser.Parse(_dirPath + _emptyFile, _baseUri);
             Assert.That(result, Is.Null);
         }
 
         [Test]
         public void WhenGivenOnlyPrefixFileData_ShouldReturnNull()
         {
-            R2RMLMap result = Parser.Parse(DirPath + PrefixOnlyFile, BaseUri);
+            R2RMLMap result = _r2rmlParser.Parse(_dirPath + _prefixOnlyFIle, _baseUri);
             Assert.That(result, Is.Null);
         }
     }

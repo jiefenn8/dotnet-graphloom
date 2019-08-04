@@ -7,49 +7,49 @@ namespace GraphLoom.Mapper.RDF.Configuration
 {
     public class TriplesMap : IStatementsConfig
     {
-        private IDictionary<IRelationConfig, IObjectsConfig> PredicateObjectMaps = new Dictionary<IRelationConfig, IObjectsConfig>();
-        private string ClassName;
-        private string SourceName;
-        private string Template;
+        private IDictionary<IRelationConfig, IObjectsConfig> _predicateObjectMaps = new Dictionary<IRelationConfig, IObjectsConfig>();
+        private string _className;
+        private string _sourceName;
+        private string _template;
 
         public void AddRelationObjectConfig(IRelationConfig relationConfig, IObjectsConfig objectsConfig)
         {
-            PredicateObjectMaps.Add(relationConfig, objectsConfig);
+            _predicateObjectMaps.Add(relationConfig, objectsConfig);
         }
 
         public string GetClassName()
         {
-            return ClassName;
+            return _className;
         }
 
         public IDictionary<IRelationConfig, IObjectsConfig> GetRelationObjectConfigs()
         {
-            return PredicateObjectMaps;
+            return _predicateObjectMaps;
         }
 
         public string GetSourceName()
         {
-            return SourceName;
+            return _sourceName;
         }
 
         public string GetTemplate()
         {
-            return Template;
+            return _template;
         }
 
         public void SetClassName(string className)
         {
-            ClassName = className;
+            _className = className;
         }
 
         public void SetSourceName(string source)
         {
-            SourceName = source;
+            _sourceName = source;
         }
 
         public void SetTemplate(string template)
         {
-            Template = template;
+            _template = template;
         }
     }
 }

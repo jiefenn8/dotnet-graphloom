@@ -12,20 +12,20 @@ namespace GraphLoom.UnitTest.Mapper.Configuration
     [TestFixture(typeof(PredicateMap))]
     public class IRelationConfigTest<T> where T : IRelationConfig, new()
     {
-        private IRelationConfig RelationConfig;
+        private IRelationConfig _relationConfig;
 
         [SetUp]
         public void SetUp()
         {
-            RelationConfig = new T();
+            _relationConfig = new T();
         }
 
         [Test]
         public void WhenHaveRelationName_ShouldReturnPopulatedString()
         {
             string relationName = "relation_name";
-            RelationConfig.SetRelationName(relationName);
-            string result = RelationConfig.GetRelationName();
+            _relationConfig.SetRelationName(relationName);
+            string result = _relationConfig.GetRelationName();
             Assert.That(result, Is.EqualTo(relationName));
         }
     }

@@ -11,25 +11,19 @@ namespace GraphLoom.UnitTest.Mapper.RDF
     [TestFixture]
     public class URIFactoryTest
     {
-        private IDictionary<string, string> row;
-
-        [SetUp]
-        public void SetUp()
+        [Test]
+        public void WhenCreateUriFromTemplateSucceed_ShouldReturnExpectedURI()
         {
-            row = new Dictionary<string, string>()
+            IDictionary<string, string> fakeRow = new Dictionary<string, string>()
             {
                 { "EMPNO", "7369" },
                 { "ENAME", "SMITH" },
                 { "JOB", "CLERK" },
                 { "DEPTNO", "10" },
             };
-        }
 
-        [Test]
-        public void WhenCreateUriFromTemplateSucceed_ShouldReturnExpectedURI()
-        {
             Uri expResult = new Uri("http://www.example.org/employee/7369");
-            Uri result = URIFactory.FromTemplate("http://www.example.org/employee/{EMPNO}", row);
+            Uri result = URIFactory.FromTemplate("http://www.example.org/employee/{EMPNO}", fakeRow);
             Assert.That(result, Is.EqualTo(expResult));
         }
 
