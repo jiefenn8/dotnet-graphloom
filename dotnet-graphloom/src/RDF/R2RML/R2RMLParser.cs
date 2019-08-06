@@ -31,19 +31,19 @@ namespace GraphLoom.Mapper.RDF.R2RML
             return Parse(filename, null);
         }
 
-        public R2RMLMap Parse(string filename, Uri uri)
+        public R2RMLMap Parse(string filename, Uri baseUri)
         {
             IGraph graph = new Graph();
-            graph.BaseUri = uri;
+            graph.BaseUri = baseUri;
             _rdfLoader.LoadFromFile(graph, filename, _turtleParser);
    
             return MapToR2RMLMap(graph);
         }
 
-        public R2RMLMap Parse(Uri uri)
+        public R2RMLMap Parse(Uri baseUri)
         {
             IGraph graph = new Graph();
-            _rdfLoader.LoadFromUri(graph, uri, _turtleParser);
+            _rdfLoader.LoadFromUri(graph, baseUri, _turtleParser);
           
             return MapToR2RMLMap(graph);
         }
@@ -53,6 +53,11 @@ namespace GraphLoom.Mapper.RDF.R2RML
             if (!graph.NamespaceMap.HasNamespace(_r2rmlPrefix)) return null;
 
             R2RMLMap r2rmlMap = new R2RMLMap();
+            foreach(string prefix in graph.NamespaceMap.Prefixes)
+            {
+                r2rmlMap.AddNamespace(prefix, graph.NamespaceMap.GetNamespaceUri(prefix).ToString());
+            }
+
             IEnumerable<INode> nodesList = graph.Triples.SubjectNodes.UriNodes();
             if (!nodesList.Any()) return null;
             foreach (IUriNode uri in nodesList)
@@ -98,7 +103,10 @@ namespace GraphLoom.Mapper.RDF.R2RML
             IEnumerable<Triple> classTypeList = graph.GetTriplesWithSubjectPredicate(subjectMap.Object, graph.GetUriNode("rr:class"));
             if (classTypeList.Count() != 1) throw new ArgumentOutOfRangeException("R2RML Rule: Must have ONE class in SubjectMap.");
             Triple classType = classTypeList.First();
-            output.SetClassName(((IUriNode)classType.Object).Uri.ToString());
+
+            string classNameQName;
+            graph.NamespaceMap.ReduceToQName(((IUriNode)classType.Object).Uri.ToString(), out classNameQName);
+            output.SetClassName(classNameQName);
         }
 
         private void MapToPredicateObjectMap(IGraph graph, IEnumerable<Triple> pomList, TriplesMap output)
@@ -109,7 +117,9 @@ namespace GraphLoom.Mapper.RDF.R2RML
                 if (predicateList.Count() != 1) throw new ArgumentOutOfRangeException("R2RML Rule: Must have ONE Predicate in PredicateObjectMap.");
                 Triple predicate = predicateList.First();
                 PredicateMap predicateMap = new PredicateMap();
-                predicateMap.SetRelationName(((IUriNode)predicate.Object).Uri.ToString());
+                string relationNameQName;
+                graph.NamespaceMap.ReduceToQName(((IUriNode)predicate.Object).Uri.ToString(), out relationNameQName);
+                predicateMap.SetRelationName(relationNameQName);
 
                 IEnumerable<Triple> objectMapList = graph.GetTriplesWithSubjectPredicate(pom.Object, graph.GetUriNode("rr:objectMap"));
                 if (objectMapList.Count() != 1) throw new ArgumentOutOfRangeException("WIP: Currently support ONE ObjectMap in PredicateObjectMap.");
