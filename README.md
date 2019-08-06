@@ -31,29 +31,45 @@ git clone https://github.com/jiefenn8/dotnet-graphloom.git
 ### Usage example
 
 ```
-//Quick example to RDF graph
 using GraphLoom.Mapper;
 using GraphLoom.Mapper.RDF;
-using GraphLoom.Mappoer.Configuration;
+using GraphLoom.Mapper.RDF.R2RML;
+using System;
+using VDS.RDF;
+using VDS.RDF.Writing;
 
-//Declare and initalise required implementations
-IInputSource InputSource = new YourInputSourceImpl();
-IMapperConfig MapperConfig = new YouMapperConfigImpl(); 
+namespace ExampleApp1
+{
+    public class Program
+    {
+        //Example using GraphLoom to convert inputsource to RDF.
+        public static void Main(string[] args)
+        {
+            //Parse the r2rml document into a r2rml map.
+            R2RMLParser r2rmlParser = new R2RMLParser();
+            R2RMLMap r2rmlMap = r2rmlParser.Parse("my_r2rml_doc.ttl", new Uri("http://www.mydomainname.com/ns#"));
 
-//Map data
-IGraphMapper RDFMapper = RDFMapperFactory.createDefaultRDFMapper();
-IGenericGraph output = RDFMapper.MapToGraph(InputSource, MapperConfig);
-
-//Rest of your code handling output. e.g. To file or graph database
+            //Provide own inputsource implementation with r2rml map.
+            IInputSource inputSource = new YourIInputSourceImplementation();
+            IGraphMapper rdfMapper = RDFMapperFactory.CreateDefaultRDFMapper();
+            IGenericGraph result = rdfMapper.MapToGraph(inputSource, r2rmlMap);
+            
+            //Manipulate result or write to DB store or File.
+            
+            //Writing to file using dotNetRDF API.
+            IGraph vdsGraph = (IGraph)result;
+            vdsGraph.SaveToFile("my_rdf_result.nt", new NTriplesWriter());
+        }
+    }
+}
 ```
 
-### Plans
+### ToDo
 
-* Add [R2RML](https://www.w3.org/TR/r2rml/) implementation
-* Add graph RDF file output support
-* Add graph to graph-db/triplestore support
-* Add [RML](rml.io) implementation (JSON, CSV and XML data source)
-* Add Label Property Graph implementation
+* ~~Add [R2RML](https://www.w3.org/TR/r2rml/) implementation.~~ Initial mvp implement done. 
+* Add graph output to graph-db(like Neo4J) support.
+* Add [RML](rml.io) implementation (JSON, CSV and XML data source).
+* Add Label Property Graph implementation.
 
 ## Built With
 
