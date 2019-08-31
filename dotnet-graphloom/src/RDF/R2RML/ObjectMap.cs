@@ -1,21 +1,35 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
+﻿using GraphLoom.Mapper.Api;
 using System.Collections.Generic;
-using System.Text;
+using VDS.RDF;
 
-namespace GraphLoom.Mapper.RDF.R2RML
+namespace GraphLoom.RDF.R2RML
 {
-    public class ObjectMap : IObjectsConfig
+    //
+    // Summary:
+    //     Implementation of R2RML ObjectMap with NodeMap interface. 
+    public class ObjectMap : INodeMap
     {
-        private string _sourceName;
+        private NodeFactory _nodeFactory = new NodeFactory();
+        private string _columnName;
+
+        public ObjectMap(string columnName)
+        {
+            _columnName = columnName;
+        }
+
+        public INode GenerateNodeTerm(IReadOnlyDictionary<string, string> row)
+        {
+            return _nodeFactory.CreateLiteralNode(row[_columnName]);
+        }
+
         public string GetSourceName()
         {
-            return _sourceName;
+            return _columnName;
         }
 
         public void SetSourceName(string source)
         {
-            _sourceName = source;
+            _columnName = source;
         }
     }
 }

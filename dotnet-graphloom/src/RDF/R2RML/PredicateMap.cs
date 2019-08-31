@@ -1,21 +1,23 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GraphLoom.Mapper.Api;
+using VDS.RDF;
 
 namespace GraphLoom.Mapper.RDF.R2RML
 {
-    public class PredicateMap : IRelationConfig
+    //
+    // Summary:
+    //     Implementation of R2RML PredicateMap with RelationMap interface. 
+    public class PredicateMap : IRelationMap
     {
-        private string _predicateName;
-        public string GetRelationName()
+        private IUriNode _predicate;
+
+        public PredicateMap(IUriNode predicate)
         {
-            return _predicateName;
+            _predicate = predicate;
         }
 
-        public void SetRelationName(string relation)
+        public IUriNode GetRelationTerm()
         {
-            _predicateName = relation;
+            return _predicate;
         }
     }
 }

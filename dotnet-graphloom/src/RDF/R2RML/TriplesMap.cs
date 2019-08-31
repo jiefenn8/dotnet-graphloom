@@ -1,55 +1,61 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
+﻿using GraphLoom.Mapper.Api;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.Linq;
+using VDS.RDF;
 
-namespace GraphLoom.Mapper.RDF.Configuration
+namespace GraphLoom.Mapper.RDF.R2RML
 {
-    public class TriplesMap : IStatementsConfig
+    //
+    // Summary:
+    //     Implementation of R2RML TriplesMap with EntityMap interface. 
+    public class TriplesMap : IEntityMap
     {
-        private IDictionary<IRelationConfig, IObjectsConfig> _predicateObjectMaps = new Dictionary<IRelationConfig, IObjectsConfig>();
-        private string _className;
-        private string _sourceName;
-        private string _template;
+        private LogicalTable _logicalTable;
+        private SubjectMap _subjectMap;
+        private Dictionary<IRelationMap, INodeMap> _predicateObjectMaps = new Dictionary<IRelationMap, INodeMap>();
 
-        public void AddRelationObjectConfig(IRelationConfig relationConfig, IObjectsConfig objectsConfig)
+        public TriplesMap(LogicalTable logicalTable, SubjectMap subjectMap)
         {
-            _predicateObjectMaps.Add(relationConfig, objectsConfig);
+            _logicalTable = logicalTable;
+            _subjectMap = subjectMap;
         }
 
-        public string GetClassName()
+        public string SourceName => _logicalTable.SourceName;
+
+        public void AddRelationNodePair(IRelationMap predicateMap, INodeMap objectMap)
         {
-            return _className;
+            _predicateObjectMaps.Add(predicateMap, objectMap);
         }
 
-        public IDictionary<IRelationConfig, IObjectsConfig> GetRelationObjectConfigs()
+        public IUriNode GenerateEntityTerm(IReadOnlyDictionary<string, string> entityRow)
+        {
+            return _subjectMap.GenerateEntityTerm(entityRow);
+        }
+
+        public INodeMap GetNodeMapWithRelation(IRelationMap relationMap)
+        {
+            return _predicateObjectMaps[relationMap];
+        }
+
+        public IDictionary<IRelationMap, INodeMap> GetRelationObjectConfigs()
         {
             return _predicateObjectMaps;
         }
 
-        public string GetSourceName()
+        public bool HasRelationNodeMaps()
         {
-            return _sourceName;
+            return _predicateObjectMaps.Any();
         }
 
-        public string GetTemplate()
+        public IReadOnlyCollection<IUriNode> ListEntityClasses()
         {
-            return _template;
+            return _subjectMap.ListEntityClasses();
         }
 
-        public void SetClassName(string className)
+        public IReadOnlyCollection<IRelationMap> ListRelationMaps()
         {
-            _className = className;
-        }
-
-        public void SetSourceName(string source)
-        {
-            _sourceName = source;
-        }
-
-        public void SetTemplate(string template)
-        {
-            _template = template;
+            return new ReadOnlyCollection<IRelationMap>(_predicateObjectMaps.Keys.ToList());
         }
     }
 }
