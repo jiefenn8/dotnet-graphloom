@@ -1,8 +1,7 @@
-﻿using System;
-using VDS.RDF;
+﻿using VDS.RDF;
 using VDS.RDF.Parsing;
 
-namespace GraphLoom.Mapper.RDF.Wrapper
+namespace GraphLoom.Mappers.Rdf.Wrapper
 {
     public class RdfLoaderWrapper : IRdfLoader
     {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VDS.RDF;
+﻿using VDS.RDF;
 
-namespace GraphLoom.Mapper.RDF.Wrapper
+namespace GraphLoom.Mappers.Rdf.Wrapper
 {
     public interface IRdfLoader
     {

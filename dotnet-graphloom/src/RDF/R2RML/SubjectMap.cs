@@ -1,10 +1,10 @@
-﻿using GraphLoom.Mapper.Api;
+﻿using GraphLoom.Mappers.Api;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using VDS.RDF;
 
-namespace GraphLoom.Mapper.RDF.R2RML
+namespace GraphLoom.Mappers.Rdf.R2rml
 {
     //
     // Summary:

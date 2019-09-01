@@ -9,8 +9,8 @@
     <ProjectGuid>{54B8210E-3B9D-4F51-BF1D-6E9E1C577C2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GraphLoom.UnitTest</RootNamespace>
-    <AssemblyName>GraphLoom.UnitTest</AssemblyName>
+    <RootNamespace>GraphLoom.UnitTests</RootNamespace>
+    <AssemblyName>GraphLoom.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -80,12 +80,13 @@
     <Compile Include="test\RDF\R2RML\LogicalTableTest.cs" />
     <Compile Include="test\RDF\R2RML\ObjectMapTest.cs" />
     <Compile Include="test\RDF\R2RML\PredicateMapTest.cs" />
-    <Compile Include="test\RDF\R2RML\R2RMLMapTest.cs" />
+    <Compile Include="test\RDF\R2RML\R2rmlMapTest.cs" />
     <Compile Include="test\RDF\R2RML\SubjectMapTest.cs" />
-    <Compile Include="test\RDF\RDFMapperTest.cs" />
+    <Compile Include="test\RDF\R2RML\TriplesMapTest.cs" />
+    <Compile Include="test\RDF\RdfMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test\Exceptions\BaseExceptionTest.cs" />
-    <Compile Include="test\RDF\Parser\R2RMLParserTest.cs" />
+    <Compile Include="test\RDF\Parser\R2rmlParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

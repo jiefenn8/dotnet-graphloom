@@ -1,6 +1,6 @@
-﻿using GraphLoom.Mapper.Api;
+﻿using GraphLoom.Mappers.Api;
 
-namespace GraphLoom.Mapper.RDF.R2RML
+namespace GraphLoom.Mappers.Rdf.R2rml
 {
     //
     // Summary:

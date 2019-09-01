@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 #GraphLoom
-dotnet-graphloom.IntegrationTest/
+dotnet-graphloom.IntegrationTests/

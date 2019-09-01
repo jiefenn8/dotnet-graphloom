@@ -1,39 +1,38 @@
-﻿using GraphLoom.Mapper.Exceptions;
-using GraphLoom.Mapper.RDF.R2RML;
-using GraphLoom.Mapper.RDF.Wrapper;
-using GraphLoom.RDF.R2RML;
+﻿using GraphLoom.Mappers.Exceptions;
+using GraphLoom.Mappers.Rdf.R2rml;
+using GraphLoom.Mappers.Rdf.Wrapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 
-namespace GraphLoom.Mapper.RDF.Parser
+namespace GraphLoom.Mappers.Rdf.Parsers
 {
-    public class R2RMLParser
+    public class R2rmlParser
     {
         private readonly string _r2rmlPrefix = "rr";
         private IRdfLoader _rdfLoader;
         private TurtleParser _turtleParser;
 
-        public R2RMLParser()
+        public R2rmlParser()
         {
             _rdfLoader = new RdfLoaderWrapper();
             _turtleParser = new TurtleParser();
         }
 
-        public R2RMLParser(IRdfLoader rdfLoader)
+        public R2rmlParser(IRdfLoader rdfLoader)
         {
             _rdfLoader = rdfLoader;
             _turtleParser = new TurtleParser();
         }
 
-        public R2RMLMap Parse(string filename)
+        public R2rmlMap Parse(string filename)
         {
             return Parse(filename, null);
         }
 
-        public R2RMLMap Parse(string filename, Uri baseUri)
+        public R2rmlMap Parse(string filename, Uri baseUri)
         {
             IGraph graph = new Graph();
             graph.BaseUri = baseUri;
@@ -42,12 +41,12 @@ namespace GraphLoom.Mapper.RDF.Parser
             return MapToR2RMLMap(graph);
         }
 
-        private R2RMLMap MapToR2RMLMap(IGraph r2rmlGraph)
+        private R2rmlMap MapToR2RMLMap(IGraph r2rmlGraph)
         {
             INamespaceMapper namespaceMap = r2rmlGraph.NamespaceMap;
             if (!namespaceMap.HasNamespace(_r2rmlPrefix)) { throw new ParserException("'rr' prefix uri not found."); }
 
-            R2RMLMap r2rmlMap = new R2RMLMap(r2rmlGraph.BaseUri, r2rmlGraph.NamespaceMap); ;
+            R2rmlMap r2rmlMap = new R2rmlMap(r2rmlGraph.BaseUri, r2rmlGraph.NamespaceMap); ;
             foreach (IUriNode tm in FindTriplesMaps(r2rmlGraph))
             {
                 TriplesMap triplesMap = new TriplesMap(

@@ -1,9 +1,9 @@
-﻿using GraphLoom.Mapper.RDF.R2RML;
+﻿using GraphLoom.Mappers.Rdf.R2rml;
 using NUnit.Framework;
 using System;
 using VDS.RDF;
 
-namespace GraphLoom.UnitTest.RDF.R2RML
+namespace GraphLoom.UnitTests.Rdf.R2rml
 {
     [TestFixture]
     public class PredicateMapTest
@@ -21,7 +21,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test]
-        public void WhenGetRelationTerm_ShouldReturnExpectedUri()
+        public void WhenRelationTermGiven_ThenReturnUriNode()
         {
             IUriNode result = _predicateMap.GetRelationTerm();
             Assert.That(result, Is.EqualTo(_expectedPredicate));

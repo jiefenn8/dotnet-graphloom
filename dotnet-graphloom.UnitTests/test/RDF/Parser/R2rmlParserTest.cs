@@ -1,19 +1,19 @@
-﻿using GraphLoom.Mapper.Exceptions;
-using GraphLoom.Mapper.RDF.Parser;
-using GraphLoom.Mapper.RDF.R2RML;
-using GraphLoom.Mapper.RDF.Wrapper;
+﻿using GraphLoom.Mappers.Exceptions;
+using GraphLoom.Mappers.Rdf.Parsers;
+using GraphLoom.Mappers.Rdf.R2rml;
+using GraphLoom.Mappers.Rdf.Wrapper;
 using Moq;
 using NUnit.Framework;
 using System.IO;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 
-namespace GraphLoom.UnitTest.RDF.R2RML
+namespace GraphLoom.UnitTests.Rdf.Parsers
 {
     [TestFixture]
-    public class R2RMLParserTest
+    public class R2rmlParserTest
     {
-        private R2RMLParser _r2rmlParser;
+        private R2rmlParser _r2rmlParser;
         private IGraph _mockGraph;
         private IRdfLoader _mockRdfLoader;
         private readonly string _fileName = "r2rml_file.ttl";
@@ -26,7 +26,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             _mockRdfLoader = Mock.Of<IRdfLoader>();
 
             //SUT instance creation
-            _r2rmlParser = new R2RMLParser(_mockRdfLoader);
+            _r2rmlParser = new R2rmlParser(_mockRdfLoader);
 
             //Default mock behaviour setup
             Mock.Get(_mockRdfLoader)
@@ -47,14 +47,14 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test]
-        public void WhenGivenValidFile_ShouldReturnR2RMLMap()
+        public void WhenValidFileGiven_ThenReturnR2RMLMap()
         {
-            R2RMLMap result = _r2rmlParser.Parse(_fileName, null);
+            R2rmlMap result = _r2rmlParser.Parse(_fileName, null);
             Assert.That(result, Is.Not.Null);
         }
 
         [Test]
-        public void WhenGivenInvalidFilePath_ShouldThrowException()
+        public void WhenInvalidFilePathGiven_ThenThrowException()
         {
             string invalid_path = "invalid_filepath.ttl";
             Mock.Get(_mockRdfLoader)
@@ -65,7 +65,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test]
-        public void WhenGivenNoNamespace_ShouldThrowException()
+        public void WhenNoNamespaceGiven_ThenThrowException()
         {
             string expected = "'rr' prefix uri not found.";
             Mock.Get(_mockGraph)
@@ -77,7 +77,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test]
-        public void WhenGivenNoTriplesMap_ShouldThrowException()
+        public void WhenNoTriplesMapGiven_ThenThrowException()
         {
             string expected = "No valid Triples Map with rr:logicalTable found.";
             Mock.Get(_mockGraph)

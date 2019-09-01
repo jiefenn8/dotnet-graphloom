@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 //
 // Summary:
 //     Superclass of exception arising from GraphLoom.Parser code.
-namespace GraphLoom.Mapper.Exceptions
+namespace GraphLoom.Mappers.Exceptions
 {
     public class ParserException : GraphLoomException
     {

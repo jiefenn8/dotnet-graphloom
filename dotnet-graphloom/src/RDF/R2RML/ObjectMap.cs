@@ -1,8 +1,8 @@
-﻿using GraphLoom.Mapper.Api;
+﻿using GraphLoom.Mappers.Api;
 using System.Collections.Generic;
 using VDS.RDF;
 
-namespace GraphLoom.RDF.R2RML
+namespace GraphLoom.Mappers.Rdf.R2rml
 {
     //
     // Summary:

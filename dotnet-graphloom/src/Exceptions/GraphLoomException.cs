@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace GraphLoom.Mapper.Exceptions
+namespace GraphLoom.Mappers.Exceptions
 {
     //
     // Summary:

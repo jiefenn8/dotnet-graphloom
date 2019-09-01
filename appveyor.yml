@@ -14,5 +14,5 @@ build:
   verbosity: minimal
 
 test_script:
- - .\test_setup\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:".\test_setup\NUnit.ConsoleRunner.3.10.0\tools\nunit3-console.exe" -targetargs:".\dotnet-graphloom.UnitTest\bin\Release\GraphLoom.UnitTest.dll" -filter:"+[GraphLoom*]* -[GraphLoom.UnitTest*]*" -output:".\dotnet-graphloom_coverage.xml"
+ - .\test_setup\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:".\test_setup\NUnit.ConsoleRunner.3.10.0\tools\nunit3-console.exe" -targetargs:".\dotnet-graphloom.UnitTests\bin\Release\GraphLoom.UnitTests.dll" -filter:"+[GraphLoom*]* -[GraphLoom.UnitTests*]*" -output:".\dotnet-graphloom_coverage.xml"
  - .\test_setup\Codecov.1.5.0\tools\codecov.exe -f "dotnet-graphloom_coverage.xml"

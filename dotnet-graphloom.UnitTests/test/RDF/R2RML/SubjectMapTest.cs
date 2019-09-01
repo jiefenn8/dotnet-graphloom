@@ -1,11 +1,11 @@
-﻿using GraphLoom.Mapper.RDF.R2RML;
+﻿using GraphLoom.Mappers.Rdf.R2rml;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using VDS.RDF;
 
-namespace GraphLoom.UnitTest.RDF.R2RML
+namespace GraphLoom.UnitTests.Rdf.R2rml
 {
     [TestFixture]
     public class SubjectMapTest
@@ -23,7 +23,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test]
-        public void WhenGenerateEntityTerm_ShouldReturnUri()
+        public void WhenEntityRecordGiven_ThenReturnUriNode()
         {
             IUriNode expectedResult = _nodeFactory.CreateUriNode(new Uri("http://www.example.com/Template/Col_1_Val"));
             string value = "Col_1_Val";

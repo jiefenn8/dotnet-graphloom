@@ -1,16 +1,16 @@
-﻿using GraphLoom.Mapper.Api;
-using GraphLoom.Mapper.Exceptions;
+﻿using GraphLoom.Mappers.Api;
+using GraphLoom.Mappers.Exceptions;
 using System.Collections.Generic;
 using VDS.RDF;
 
-namespace GraphLoom.Mapper.RDF
+namespace GraphLoom.Mappers.Rdf
 {
     //
     // Summary:
     //     Implementation of R2RML with GraphMapper interface. 
     //     This class implements the mapping functions to map data-source
     //     to a RDF graph model.
-    public class RDFMapper : IGraphMapper
+    public class RdfMapper : IGraphMapper
     {
         // Summary:
         //     Main mapping function converting a data-source to a RDF graph

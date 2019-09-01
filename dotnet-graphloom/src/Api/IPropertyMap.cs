@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using VDS.RDF;
 
-namespace GraphLoom.Mapper.Api
+namespace GraphLoom.Mappers.Api
 {
     //
     // Summary:

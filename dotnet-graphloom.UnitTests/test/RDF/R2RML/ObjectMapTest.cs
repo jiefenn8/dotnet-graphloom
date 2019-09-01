@@ -1,10 +1,10 @@
-﻿using GraphLoom.RDF.R2RML;
+﻿using GraphLoom.Mappers.Rdf.R2rml;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using VDS.RDF;
 
-namespace GraphLoom.UnitTest.RDF.R2RML
+namespace GraphLoom.UnitTests.Rdf.R2rml
 {
     [TestFixture]
     public class ObjectMapTest
@@ -21,7 +21,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test]
-        public void WhenGenerateNodeTerm_ShouldReturnExpectedNode()
+        public void WhenEntityRecordGiven_ThenReturnNode()
         {
             string expectedValue = "Col_1_Val";
             Mock.Get(_mockRecord)

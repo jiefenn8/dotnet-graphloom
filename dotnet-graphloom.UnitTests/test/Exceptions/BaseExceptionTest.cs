@@ -1,8 +1,8 @@
-﻿using GraphLoom.Mapper.Exceptions;
+﻿using GraphLoom.Mappers.Exceptions;
 using NUnit.Framework;
 using System;
 
-namespace GraphLoom.UnitTest.Exceptions
+namespace GraphLoom.UnitTests.Exceptions
 {
     [TestFixture(typeof(GraphLoomException))]
     [TestFixture(typeof(ParserException))]
@@ -10,13 +10,13 @@ namespace GraphLoom.UnitTest.Exceptions
     public class BaseExceptionTest<T> where T : SystemException, new()
     {
         [Test]
-        public void WhenThrowException_ShouldCatchExpected()
+        public void WhenThrowException_ThenCatch()
         {
             Assert.Throws<T>(() => throw new T());
         }
         
         [Test]
-        public void WhenThrowExceptionMessage_ShouldCatchExpected()
+        public void WhenThrowException_ThenCatchMessage()
         {
             string expected = "message_1";
 
@@ -26,7 +26,7 @@ namespace GraphLoom.UnitTest.Exceptions
         }
 
         [Test]
-        public void WhenThrowExceptionInner_ShouldCatchExpected()
+        public void WhenThrowException_ThenCatchInner()
         {
             Exception expectedInner = new ArgumentNullException();
 
@@ -36,7 +36,7 @@ namespace GraphLoom.UnitTest.Exceptions
         }
 
         [Test]
-        public void WhenThrowExceptionMessageInner_ShouldCatchExpected()
+        public void WhenThrowException_ThenCatchInnerAndMessage()
         {
             string expectedMessage = "message_1";
             Exception expectedInner = new ArgumentNullException();
