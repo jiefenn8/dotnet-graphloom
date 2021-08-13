@@ -1,0 +1,36 @@
+# This workflow will build a .NET project with Nuget
+# For more information see: https://docs.github.com/en/actions/guides/building-and-testing-net
+
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{matrix.os}}
+    strategy: 
+        matrix:
+            os: [windows-latest]
+        fail-fast: false
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+            ${{ runner.os }}-nuget
+    - name: Setup .NET 3.1
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1'
+    - name: Setup Nuget 
+      uses: nuget/setup-nuget@v1
+      with: 
+        nuget-version: latest
+    - name: Install dependencies
+      run: nuget restore dotnet-graphloom.sln
+    - name: Build project 
+      run: dotnet build dotnet-graphloom --configuration Release --no-restore
+    - name: Test project
+      run: dotnet test dotnet-graphloom.UnitTest /p:CollectCoverage=true /p:CoverletOutput=./unitTestReport.json --no-restore --verbosity normal
