@@ -31,6 +31,12 @@ jobs:
     - name: Install dependencies
       run: nuget restore dotnet-graphloom.sln
     - name: Build project 
-      run: dotnet build dotnet-graphloom --configuration Release --no-restore
+      run: dotnet build --no-restore
     - name: Test project
-      run: dotnet test dotnet-graphloom.UnitTest /p:CollectCoverage=true /p:CoverletOutput=./unitTestReport.json --no-restore --verbosity normal
+      run: dotnet test dotnet-graphloom.UnitTest /p:CollectCoverage=true /p:CoverletOutput=./unitTestReport.json --no-restore
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        files: unitTestReport.json
+        flags: unittest,${{runner.os}}
+        fail_ci_if_error: true
