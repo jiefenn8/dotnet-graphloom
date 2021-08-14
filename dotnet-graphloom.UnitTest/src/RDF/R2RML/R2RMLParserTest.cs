@@ -20,9 +20,9 @@ namespace GraphLoom.UnitTest.RDF.R2RML
 
         private readonly Uri _baseUri = new Uri("http://www.example.com");
         private readonly string _dirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        private readonly string _validFile = "/TestData/valid_r2rml.ttl";
-        private readonly string _emptyFile = "/TestData/empty_r2rml.ttl";
-        private readonly string _prefixOnlyFIle = "/TestData/only_prefix_r2rml.ttl";
+        private readonly string _validFile = "/resources/data/valid_r2rml.ttl";
+        private readonly string _emptyFile = "/resources/data/empty_r2rml.ttl";
+        private readonly string _prefixOnlyFIle = "/resources/data/only_prefix_r2rml.ttl";
         private readonly string _examplePrefix = "ex";
         private readonly Uri _examplePrefixUri = UriFactory.Create("http://www.example.com/ns#");
 
