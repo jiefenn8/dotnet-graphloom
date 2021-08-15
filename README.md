@@ -2,7 +2,7 @@
 
 A .NET standard implementation of a RDB to Semantic Graph mapping API. 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/pd813dcsc96n675m?svg=true)](https://ci.appveyor.com/project/jiefenn8/dotnet-graphloom)[![codecov](https://codecov.io/gh/jiefenn8/dotnet-graphloom/branch/master/graph/badge.svg)](https://codecov.io/gh/jiefenn8/dotnet-graphloom)[![Apache 2.0 License](https://img.shields.io/badge/license-apache2-green.svg) ](https://github.com/jiefenn8/dotnet-graphloom/blob/master/LICENSE.md)
+[![CI](https://github.com/jiefenn8/dotnet-graphloom/workflows/CI/badge.svg)](https://github.com/jiefenn8/dotnet-graphloom/actions?query=workflow%3ACI)[![codecov](https://codecov.io/gh/jiefenn8/dotnet-graphloom/branch/master/graph/badge.svg?token=9FWejJ5K5K)](https://codecov.io/gh/jiefenn8/dotnet-graphloom)[![Apache 2.0 License](https://img.shields.io/badge/license-apache2-green.svg) ](https://github.com/jiefenn8/graphloom/blob/master/LICENSE.md)
 
 ## Description
 
