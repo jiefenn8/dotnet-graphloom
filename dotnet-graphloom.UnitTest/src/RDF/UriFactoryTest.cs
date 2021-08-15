@@ -2,9 +2,6 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphLoom.UnitTest.Mapper.RDF
 {
@@ -34,6 +31,6 @@ namespace GraphLoom.UnitTest.Mapper.RDF
             Uri result = URIFactory.FromString("http://www.example.org/");
             Assert.That(result, Is.EqualTo(expResult));
         }
-    
+
     }
 }

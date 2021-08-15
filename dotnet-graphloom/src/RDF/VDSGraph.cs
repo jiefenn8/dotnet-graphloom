@@ -1,5 +1,4 @@
-﻿using System;
-using VDS.RDF;
+﻿using VDS.RDF;
 
 namespace GraphLoom.Mapper.RDF
 {

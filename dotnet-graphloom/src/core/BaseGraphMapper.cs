@@ -20,7 +20,7 @@ namespace GraphLoom.Mapper
             IGenericGraph OutputGraph = new T();
 
             cancelled = false;
-            foreach(IStatementsConfig entityConfig in config.ListStatementsConfigs())
+            foreach (IStatementsConfig entityConfig in config.ListStatementsConfigs())
             {
                 if (cancelled)
                 {

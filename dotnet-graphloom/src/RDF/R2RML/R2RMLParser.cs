@@ -36,7 +36,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
             IGraph graph = new Graph();
             graph.BaseUri = baseUri;
             _rdfLoader.LoadFromFile(graph, filename, _turtleParser);
-   
+
             return MapToR2RMLMap(graph);
         }
 
@@ -44,7 +44,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         {
             IGraph graph = new Graph();
             _rdfLoader.LoadFromUri(graph, baseUri, _turtleParser);
-          
+
             return MapToR2RMLMap(graph);
         }
 
@@ -53,7 +53,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
             if (!graph.NamespaceMap.HasNamespace(_r2rmlPrefix)) return null;
 
             R2RMLMap r2rmlMap = new R2RMLMap();
-            foreach(string prefix in graph.NamespaceMap.Prefixes)
+            foreach (string prefix in graph.NamespaceMap.Prefixes)
             {
                 r2rmlMap.AddNamespace(prefix, graph.NamespaceMap.GetNamespaceUri(prefix).ToString());
             }
@@ -111,7 +111,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
 
         private void MapToPredicateObjectMap(IGraph graph, IEnumerable<Triple> pomList, TriplesMap output)
         {
-            foreach(Triple pom in pomList)
+            foreach (Triple pom in pomList)
             {
                 IEnumerable<Triple> predicateList = graph.GetTriplesWithSubjectPredicate(pom.Object, graph.GetUriNode("rr:predicate"));
                 if (predicateList.Count() != 1) throw new ArgumentOutOfRangeException("R2RML Rule: Must have ONE Predicate in PredicateObjectMap.");
