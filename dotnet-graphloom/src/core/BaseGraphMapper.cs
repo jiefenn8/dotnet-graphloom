@@ -39,6 +39,7 @@ namespace GraphLoom.Mapper
 
         public virtual void StopTask() => cancelled = true;
 
+        /// <inheritdoc/>
         public Graph MapToGraph(IInputSource source, IConfigMaps configMaps)
         {
             throw new NotImplementedException();
