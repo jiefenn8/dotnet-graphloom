@@ -1,5 +1,7 @@
 ﻿using System;
 using GraphLoom.Mapper.Configuration;
+using GraphLoom.Mapper.Core;
+using VDS.RDF;
 
 namespace GraphLoom.Mapper
 {
@@ -36,5 +38,10 @@ namespace GraphLoom.Mapper
         public Type GetGraphType() => typeof(T);
 
         public virtual void StopTask() => cancelled = true;
+
+        public Graph MapToGraph(IInputSource source, IConfigMaps configMaps)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
