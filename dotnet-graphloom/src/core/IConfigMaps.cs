@@ -1,5 +1,5 @@
-﻿using GraphLoom.Mapper.Core.ConfigMaps;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GraphLoom.Mapper.Core.ConfigMaps;
 
 namespace GraphLoom.Mapper.Core
 {

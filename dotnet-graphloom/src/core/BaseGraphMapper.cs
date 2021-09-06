@@ -1,5 +1,5 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
+﻿using System;
+using GraphLoom.Mapper.Configuration;
 
 namespace GraphLoom.Mapper
 {

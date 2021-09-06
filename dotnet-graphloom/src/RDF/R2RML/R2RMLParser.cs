@@ -1,8 +1,8 @@
-﻿using GraphLoom.Mapper.RDF.Configuration;
-using GraphLoom.Mapper.RDF.Wrapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GraphLoom.Mapper.RDF.Configuration;
+using GraphLoom.Mapper.RDF.Wrapper;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 

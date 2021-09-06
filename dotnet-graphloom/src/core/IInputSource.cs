@@ -1,6 +1,6 @@
-﻿using GraphLoom.Mapper.Core.InputSource;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using GraphLoom.Mapper.Core.InputSource;
 
 namespace GraphLoom.Mapper
 {

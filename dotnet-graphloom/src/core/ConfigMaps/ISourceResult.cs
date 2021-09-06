@@ -1,6 +1,6 @@
 ﻿
-using GraphLoom.Mapper.Core.InputSource;
 using System;
+using GraphLoom.Mapper.Core.InputSource;
 
 namespace GraphLoom.Mapper.Core.ConfigMaps
 {
@@ -9,7 +9,7 @@ namespace GraphLoom.Mapper.Core.ConfigMaps
         IEntityReference GetEntityReference();
         void ForEachEntity(IInputSource source, Action<IEntity> action)
         {
-            if (action == null) throw new ArgumentNullException();
+            if (action is null) throw new ArgumentNullException();
             source.ExecuteEntityQuery(GetEntityReference(), (r) =>
             {
                 while (r.HasNext())

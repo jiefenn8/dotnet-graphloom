@@ -1,8 +1,8 @@
-﻿using GraphLoom.Mapper.Configuration;
+﻿using System.Linq;
+using GraphLoom.Mapper.Configuration;
 using GraphLoom.Mapper.RDF.R2RML;
 using Moq;
 using NUnit.Framework;
-using System.Linq;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {

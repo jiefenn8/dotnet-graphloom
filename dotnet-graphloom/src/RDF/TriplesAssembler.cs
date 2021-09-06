@@ -1,6 +1,6 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using GraphLoom.Mapper.Configuration;
 using VDS.RDF;
 
 namespace GraphLoom.Mapper.RDF

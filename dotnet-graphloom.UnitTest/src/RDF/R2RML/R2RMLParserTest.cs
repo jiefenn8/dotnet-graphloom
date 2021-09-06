@@ -1,11 +1,11 @@
-﻿using GraphLoom.Mapper.RDF.R2RML;
-using GraphLoom.Mapper.RDF.Wrapper;
-using Moq;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using GraphLoom.Mapper.RDF.R2RML;
+using GraphLoom.Mapper.RDF.Wrapper;
+using Moq;
+using NUnit.Framework;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 

@@ -1,7 +1,7 @@
-﻿using GraphLoom.Mapper.RDF;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using GraphLoom.Mapper.RDF;
+using NUnit.Framework;
 using VDS.RDF;
 
 namespace GraphLoom.UnitTest.Mapper.RDF
