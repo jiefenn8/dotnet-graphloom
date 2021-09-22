@@ -23,22 +23,22 @@ namespace GraphLoom.Mapper.Core.InputSource
         /// <summary>
         /// The payload query to use.
         /// </summary>
-        private readonly string _payload;
+        private readonly string payload;
 
         /// <summary>
         /// The type of payload given.
         /// </summary>
-        private readonly PayloadType _payloadType;
+        private readonly PayloadType payloadType;
 
         /// <summary>
         /// The definition to iterate each row of results.
         /// </summary>
-        private readonly string _iteratorDef;
+        private readonly string iteratorDef;
 
         /// <summary>
         /// Additional custom properties for this configuration instance.
         /// </summary>
-        private readonly Dictionary<string, string> _properties = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> properties = new Dictionary<string, string>();
 
         /// <summary>
         /// Constructs an BaseEntityReference with the specified payload, type
@@ -53,27 +53,27 @@ namespace GraphLoom.Mapper.Core.InputSource
             if (payloadType == null) throw new ArgumentNullException("Payload type must not be null.");
             if (iteratorDef == null) throw new ArgumentNullException("Iterator definition must not be null.");
             Contract.EndContractBlock();
-            _payload = payload;
-            _payloadType = payloadType;
-            _iteratorDef = iteratorDef;
+            this.payload = payload;
+            this.payloadType = payloadType;
+            this.iteratorDef = iteratorDef;
         }
 
         /// <inheritdoc/>
         public PayloadType GetPayloadType()
         {
-            return _payloadType;
+            return payloadType;
         }
 
         /// <inheritdoc/>
         public string GetPayload()
         {
-            return _payload;
+            return payload;
         }
 
         /// <inheritdoc/>
         public string GetIteratorDef()
         {
-            return _iteratorDef;
+            return iteratorDef;
         }
 
         /// <summary>
@@ -85,13 +85,13 @@ namespace GraphLoom.Mapper.Core.InputSource
         /// <param name="value">the value to associate to the given property</param>
         public void SetProperty(string key, string value)
         {
-            _properties[key] = value;
+            properties[key] = value;
         }
 
         /// <inheritdoc/>
         public string GetProperty(string key)
         {
-            string value = _properties[key];
+            string value = properties[key];
             if (value == null)
             {
                 return string.Empty;
@@ -103,16 +103,16 @@ namespace GraphLoom.Mapper.Core.InputSource
         public override bool Equals(object obj)
         {
             return obj is BaseEntityReference reference &&
-                   _payload == reference._payload &&
-                   EqualityComparer<PayloadType>.Default.Equals(_payloadType, reference._payloadType) &&
-                   _iteratorDef == reference._iteratorDef &&
-                   EqualityComparer<Dictionary<string, string>>.Default.Equals(_properties, reference._properties);
+                   payload == reference.payload &&
+                   EqualityComparer<PayloadType>.Default.Equals(payloadType, reference.payloadType) &&
+                   iteratorDef == reference.iteratorDef &&
+                   EqualityComparer<Dictionary<string, string>>.Default.Equals(properties, reference.properties);
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return HashCode.Combine(_payload, _payloadType, _iteratorDef, _properties);
+            return HashCode.Combine(payload, payloadType, iteratorDef, properties);
         }
     }
 }
