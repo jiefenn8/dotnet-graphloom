@@ -1,9 +1,5 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using GraphLoom.Mapper.Configuration;
 
 namespace GraphLoom.Mapper.RDF.R2RML
 {

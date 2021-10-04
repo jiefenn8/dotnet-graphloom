@@ -1,9 +1,9 @@
-﻿using GraphLoom.Mapper;
+﻿using System.Collections.Generic;
+using GraphLoom.Mapper;
 using GraphLoom.Mapper.Configuration;
 using GraphLoom.Mapper.RDF;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace GraphLoom.UnitTest.Mapper
 {

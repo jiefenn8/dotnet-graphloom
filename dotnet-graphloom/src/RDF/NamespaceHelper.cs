@@ -9,7 +9,7 @@ namespace GraphLoom.Mapper.RDF
         public static INamespaceMapper ToIGraphNamespaceMap(IDictionary<string, string> namespaceMap)
         {
             INamespaceMapper rdfNamespaceMap = new NamespaceMapper();
-            foreach(KeyValuePair<string, string> nsPair in namespaceMap)
+            foreach (KeyValuePair<string, string> nsPair in namespaceMap)
             {
                 rdfNamespaceMap.AddNamespace(nsPair.Key, new Uri(nsPair.Value));
             }

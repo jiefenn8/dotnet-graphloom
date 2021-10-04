@@ -1,11 +1,11 @@
-﻿using GraphLoom.Mapper.RDF.R2RML;
-using GraphLoom.Mapper.RDF.Wrapper;
-using Moq;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using GraphLoom.Mapper.RDF.R2RML;
+using GraphLoom.Mapper.RDF.Wrapper;
+using Moq;
+using NUnit.Framework;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 
@@ -42,13 +42,13 @@ namespace GraphLoom.UnitTest.RDF.R2RML
                     graph.NamespaceMap.AddNamespace(_examplePrefix, _examplePrefixUri);
                 });
             Mock.Get(_rdfLoader).Setup(f => f.LoadFromFile(It.IsAny<Graph>(), _dirPath + _validFile, _turtleParser))
-                .Callback<IGraph, string, IRdfReader>((graph, filename, rdfReader) => 
+                .Callback<IGraph, string, IRdfReader>((graph, filename, rdfReader) =>
                 {
-                    if(graph.IsEmpty && graph.BaseUri == null) graph.BaseUri = UriFactory.Create("file:///" + filename);
+                    if (graph.IsEmpty && graph.BaseUri == null) graph.BaseUri = UriFactory.Create("file:///" + filename);
                     IUriNode triplesMap = graph.CreateUriNode(UriFactory.Create(graph.BaseUri.ToString() + "#TriplesMap1"));
 
                     graph.NamespaceMap.AddNamespace("rr", UriFactory.Create("http://www.w3.org/ns/r2rml#"));
-                    graph.NamespaceMap.AddNamespace(_examplePrefix, _examplePrefixUri);              
+                    graph.NamespaceMap.AddNamespace(_examplePrefix, _examplePrefixUri);
                     graph.Assert(triplesMap, graph.CreateUriNode("rr:logicalTable"), graph.CreateBlankNode("ltNode"));
                     graph.Assert(graph.GetBlankNode("ltNode"), graph.CreateUriNode("rr:tableName"), graph.CreateLiteralNode("EMP"));
                     graph.Assert(triplesMap, graph.CreateUriNode("rr:subjectMap"), graph.CreateBlankNode("smNode"));

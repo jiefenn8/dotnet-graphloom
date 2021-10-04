@@ -1,12 +1,6 @@
 ﻿using GraphLoom.Mapper;
 using GraphLoom.Mapper.RDF;
-using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VDS.RDF;
 
 namespace GraphLoom.UnitTest.Mapper

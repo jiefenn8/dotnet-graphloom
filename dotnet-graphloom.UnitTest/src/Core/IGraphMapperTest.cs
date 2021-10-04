@@ -1,11 +1,11 @@
-﻿using GraphLoom.Mapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using GraphLoom.Mapper;
 using GraphLoom.Mapper.Configuration;
 using GraphLoom.Mapper.RDF;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace GraphLoom.UnitTest.Mapper
 {
@@ -40,7 +40,7 @@ namespace GraphLoom.UnitTest.Mapper
 
             //Instance creation
             BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            _graphMapper = (T)Activator.CreateInstance(typeof(T), flags, null, new object[] {assemblerMock}, null);
+            _graphMapper = (T)Activator.CreateInstance(typeof(T), flags, null, new object[] { assemblerMock }, null);
 
             //Fake setup
             IGenericGraph fakeGraph = (IGenericGraph)Activator.CreateInstance(_graphMapper.GetGraphType());
@@ -57,7 +57,7 @@ namespace GraphLoom.UnitTest.Mapper
         [Test]
         public void WhenMappingSucceed_ShouldReturnGraph()
         {
-            
+
             IGenericGraph result = _graphMapper.MapToGraph(_mockInputSource, _mockMapperConfig);
             Assert.That(result, Is.Not.Null);
         }

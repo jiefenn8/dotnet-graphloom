@@ -26,4 +26,16 @@
     <ProjectReference Include="..\dotnet-graphloom\dotnet-graphloom.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="resources\data\empty_r2rml.ttl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\data\only_prefix_r2rml.ttl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\data\valid_r2rml.ttl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

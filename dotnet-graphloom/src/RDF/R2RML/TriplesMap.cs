@@ -1,7 +1,5 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using GraphLoom.Mapper.Configuration;
 
 namespace GraphLoom.Mapper.RDF.Configuration
 {

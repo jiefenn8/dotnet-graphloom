@@ -1,6 +1,6 @@
-﻿using GraphLoom.Mapper.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using GraphLoom.Mapper.Configuration;
 using VDS.RDF;
 
 namespace GraphLoom.Mapper.RDF
@@ -30,12 +30,13 @@ namespace GraphLoom.Mapper.RDF
         public override void StopTask() => cancelled = true;
 
         private void AssemblePredicateObjectsStatements(IUriNode subject, IDictionary<string, string> row, IDictionary<IRelationConfig, IObjectsConfig> predicateObjectMap)
-        { 
-            foreach(KeyValuePair<IRelationConfig, IObjectsConfig> pair in predicateObjectMap){
+        {
+            foreach (KeyValuePair<IRelationConfig, IObjectsConfig> pair in predicateObjectMap)
+            {
                 IUriNode predicate = subjectGraph.CreateUriNode(pair.Key.GetRelationName());
                 INode obj = subjectGraph.CreateLiteralNode(row[pair.Value.GetSourceName()]);
                 subjectGraph.Assert(subject, predicate, obj);
             }
-        } 
+        }
     }
 }

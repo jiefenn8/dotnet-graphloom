@@ -1,10 +1,7 @@
-﻿using GraphLoom.Mapper.RDF;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GraphLoom.Mapper.RDF;
+using NUnit.Framework;
 using VDS.RDF;
 
 namespace GraphLoom.UnitTest.Mapper.RDF
@@ -12,7 +9,7 @@ namespace GraphLoom.UnitTest.Mapper.RDF
     [TestFixture]
     public class NamespaceHelperTest
     {
-        private NamespaceHelper _namespaceHelper; 
+        private NamespaceHelper _namespaceHelper;
 
         [SetUp]
         public void SetUp()
