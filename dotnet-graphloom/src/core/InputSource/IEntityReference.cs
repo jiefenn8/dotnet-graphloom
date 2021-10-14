@@ -8,8 +8,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using GraphLoom.Mapper.src.Core.InputSource;
-
 namespace GraphLoom.Mapper.Core.InputSource
 {
     /// <summary>

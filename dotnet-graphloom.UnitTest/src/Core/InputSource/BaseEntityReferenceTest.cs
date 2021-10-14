@@ -1,6 +1,5 @@
 ﻿using System;
 using GraphLoom.Mapper.Core.InputSource;
-using GraphLoom.Mapper.src.Core.InputSource;
 using NUnit.Framework;
 
 namespace GraphLoom.UnitTest.Core.InputSource

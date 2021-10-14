@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using GraphLoom.Mapper.Core.InputSource;
 using GraphLoom.Mapper.RDF.R2RML;
-using GraphLoom.Mapper.src.RDF.R2RML;
 using Moq;
 using NUnit.Framework;
 using VDS.RDF;

@@ -11,7 +11,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using GraphLoom.Mapper.src.Core.InputSource;
 
 namespace GraphLoom.Mapper.Core.InputSource
 {

@@ -8,7 +8,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace GraphLoom.Mapper.src.Core.InputSource
+namespace GraphLoom.Mapper.Core.InputSource
 {
     /// <summary>
     /// This interface defines the base methods to manage the type of payload

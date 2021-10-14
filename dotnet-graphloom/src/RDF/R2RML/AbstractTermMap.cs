@@ -12,7 +12,6 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using GraphLoom.Mapper.Core.InputSource;
-using GraphLoom.Mapper.src.RDF.R2RML;
 using VDS.RDF;
 
 namespace GraphLoom.Mapper.RDF.R2RML

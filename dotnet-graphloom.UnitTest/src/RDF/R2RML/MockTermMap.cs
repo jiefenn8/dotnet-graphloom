@@ -9,7 +9,6 @@
 //-----------------------------------------------------------------------
 
 using GraphLoom.Mapper.RDF.R2RML;
-using GraphLoom.Mapper.src.RDF.R2RML;
 using VDS.RDF;
 
 namespace GraphLoom.UnitTest.RDF.R2RML

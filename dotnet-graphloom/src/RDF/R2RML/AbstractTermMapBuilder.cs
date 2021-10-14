@@ -9,10 +9,9 @@
 //-----------------------------------------------------------------------
 
 using System;
-using GraphLoom.Mapper.RDF.R2RML;
 using VDS.RDF;
 
-namespace GraphLoom.Mapper.src.RDF.R2RML
+namespace GraphLoom.Mapper.RDF.R2RML
 {
     /// <summary>
     /// ENUM to manage different valued TermMaps.
