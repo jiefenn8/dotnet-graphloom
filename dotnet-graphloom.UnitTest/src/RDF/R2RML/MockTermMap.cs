@@ -16,7 +16,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Mock class for <see cref="ITermMap"/> interface.
     /// </summary>
-    public class MockTermMap : AbstractTermMap
+    public class MockTermMap : AbstractTermMap<MockTermMap>
     {
         public MockTermMap(Builder builder) : base(builder) { }
 
@@ -28,11 +28,11 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         /// <summary>
         /// Mock class for <see cref="ITermMapBuilder"/> interface.
         /// </summary>
-        public class Builder : AbstractTermMapBuilder
+        public class Builder : AbstractTermMapBuilder<MockTermMap>
         {
             public Builder(IUriNode baseUri, INode baseValue, ValuedType valuedType) : base(baseUri, baseValue, valuedType) { }
 
-            public override ITermMap Build()
+            public override MockTermMap Build()
             {
                 return new MockTermMap(this);
             }

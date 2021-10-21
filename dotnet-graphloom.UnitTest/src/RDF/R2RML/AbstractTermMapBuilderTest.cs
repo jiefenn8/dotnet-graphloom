@@ -20,13 +20,13 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="AbstractTermMapBuilder"/>.
     /// </summary>
-    [TestFixture]
+    [TestFixture(typeof(SubjectMap.Builder))]
     [Parallelizable(ParallelScope.All)]
-    public class AbstractTermMapBuilderTest
+    public class AbstractTermMapBuilderTest<T> where T : ITermMapBuilder<MockTermMap>
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
-        private ITermMapBuilder builder; 
+        private ITermMapBuilder<MockTermMap> builder; 
 
         [SetUp]
         public void SetUp()
@@ -35,7 +35,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             baseUri = nodeFactory.CreateUriNode(UriFactory.Create("http://example.com/"));
         }
 
-        private static IEnumerable<TestCaseData> termMapArguments()
+        private static IEnumerable<TestCaseData> TermMapArguments()
         {
             INodeFactory nodeFactory = new NodeFactory();
             IUriNode uriNode = nodeFactory.CreateUriNode(UriFactory.Create("http://example.com/SUBJECT"));
@@ -52,30 +52,30 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             yield return new TestCaseData(blankNode, ValuedType.TEMPLATE);
         }
 
-        [Test, TestCaseSource(nameof(termMapArguments))]
+        [Test, TestCaseSource(nameof(TermMapArguments))]
         public void Create_instance_should_return_expected_base_value(INode baseValue, ValuedType valuedType) 
         {
-            builder = new MockTermMap.Builder(baseUri, baseValue, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, baseValue, valuedType });
             INode result = builder.BaseValue;
             Assert.That(result, Is.EqualTo(baseValue));
         }
 
-        [Test, TestCaseSource(nameof(termMapArguments))]
+        [Test, TestCaseSource(nameof(TermMapArguments))]
         public void Create_instance_should_return_expected_base_uri(INode baseValue, ValuedType valuedType)
         {
-            builder = new MockTermMap.Builder(baseUri, baseValue, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, baseValue, valuedType });
             INode result = builder.BaseUri;
             Assert.That(result, Is.EqualTo(baseUri));
         }
 
-        [Test, TestCaseSource(nameof(termMapArguments))]
+        [Test, TestCaseSource(nameof(TermMapArguments))]
         public void Create_instance_should_return_expected_valued_type(INode baseValue, ValuedType valuedType)
         {
-            builder = new MockTermMap.Builder(baseUri, baseValue, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, baseValue, valuedType });
             ValuedType result = builder.ValuedType;
             Assert.That(result, Is.EqualTo(valuedType));
         }
-        private static IEnumerable<TestCaseData> termTypeArguments()
+        private static IEnumerable<TestCaseData> TermTypeArguments()
         {
             yield return new TestCaseData(TermType.BLANK, ValuedType.CONSTANT);
             yield return new TestCaseData(TermType.BLANK, ValuedType.COLUMN);
@@ -92,11 +92,11 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [NonParallelizable]
-        [Test, TestCaseSource(nameof(termTypeArguments))]
+        [Test, TestCaseSource(nameof(TermTypeArguments))]
         public void Create_instance_term_type_should_return_expected(TermType termType, ValuedType valuedType)
         {
             INode mockNode = Mock.Of<INode>();
-            builder = new MockTermMap.Builder(baseUri, mockNode, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, mockNode, valuedType });
             builder.SetTermType(termType);
             TermType result = builder.TermType;
             Assert.That(result, Is.EqualTo(termType));
@@ -115,7 +115,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         {
             string value = "LANG_STR";
             INode mockNode = Mock.Of<INode>();
-            builder = new MockTermMap.Builder(baseUri, mockNode, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, mockNode, valuedType });
             builder.SetLanguage(value);
             string result = builder.Lang;
             Assert.That(result, Is.EqualTo(value));
@@ -126,7 +126,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         {
             Uri dataType = UriFactory.Create("https://www.w3.org/TR/xmlschema-2/#string");
             INode mockNode = Mock.Of<INode>();
-            builder = new MockTermMap.Builder(baseUri, mockNode, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, mockNode, valuedType });
             builder.SetDataType(dataType);
             Uri result = builder.DataType;
             Assert.That(result, Is.EqualTo(dataType));
@@ -136,7 +136,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Create_instance_should_be_non_null(ValuedType valuedType)
         {
             INode mockNode = Mock.Of<INode>();
-            builder = new MockTermMap.Builder(baseUri, mockNode, valuedType);
+            builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, mockNode, valuedType });
             ITermMap result = builder.Build();
             Assert.That(result, Is.Not.Null);
         }

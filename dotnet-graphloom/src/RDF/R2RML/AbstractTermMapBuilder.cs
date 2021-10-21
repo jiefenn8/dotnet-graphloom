@@ -43,7 +43,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
     /// this class and then call them before calling the abstract 
     /// methods below; Except for overrides.
     /// </summary>
-    public abstract class AbstractTermMapBuilder : ITermMapBuilder
+    public abstract class AbstractTermMapBuilder<T> : ITermMapBuilder<T> where T : ITermMap
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractTermMapBuilder"/> class with 
@@ -80,27 +80,27 @@ namespace GraphLoom.Mapper.RDF.R2RML
         public Uri DataType { get; private set; }
 
         /// <inheritdoc/>
-        public ITermMapBuilder SetTermType(TermType termType)
+        public ITermMapBuilder<T> SetTermType(TermType termType)
         {
             TermType = termType;
             return this;
         }
 
         /// <inheritdoc/>
-        public ITermMapBuilder SetLanguage(string lang)
+        public ITermMapBuilder<T> SetLanguage(string lang)
         {
             Lang = lang;
             return this;
         }
 
         /// <inheritdoc/>
-        public ITermMapBuilder SetDataType(Uri dataType)
+        public ITermMapBuilder<T> SetDataType(Uri dataType)
         {
             DataType = dataType;
             return this;
         }
 
         /// <inheritdoc/>
-        public abstract ITermMap Build();
+        public abstract T Build();
     }
 }

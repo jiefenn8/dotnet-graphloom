@@ -20,7 +20,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
     /// This abstract class defines the implementation of the base methods 
     /// specified in the <see cref="TermMap"/> interface.
     /// </summary>
-    public abstract class AbstractTermMap : ITermMap
+    public abstract class AbstractTermMap<T> : ITermMap where T : AbstractTermMap<T>
     {
         /// <summary>
         /// Regex to match values within a curly bracket in template. 
@@ -67,7 +67,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// with the specified TermMap Builder.
         /// </summary>
         /// <param name="builder">the TermMap Builder to build instance from</param>
-        public AbstractTermMap(ITermMapBuilder builder)
+        protected AbstractTermMap(ITermMapBuilder<T> builder)
         {
             factory = new NodeFactory();
             baseUri = builder.BaseUri;

@@ -17,7 +17,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
     /// This interface defines the base methods that manages the
     /// configuration and creation of term map instance. 
     /// </summary>
-    public interface ITermMapBuilder
+    public interface ITermMapBuilder<T> where T : ITermMap
     {
         /// <summary>
         /// Gets base URI for URI term generation. 
@@ -55,27 +55,27 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// </summary>
         /// <param name="termType">the term type to return term output as</param>
         /// <returns>this builder for method chaining</returns>
-        public ITermMapBuilder SetTermType(TermType termType);
+        public ITermMapBuilder<T> SetTermType(TermType termType);
 
         /// <summary>
         /// Sets the RDF term language tag for this TermMap.
         /// </summary>
         /// <param name="lang">the term language tag that this term will be generated as</param>
         /// <returns>this builder for method chaining</returns>
-        public ITermMapBuilder SetLanguage(string lang);
+        public ITermMapBuilder<T> SetLanguage(string lang);
 
         /// <summary>
         /// Sets the RDF term data type for this TermMap.
         /// </summary>
         /// <param name="dataType">the data type that this term will be generated as</param>
         /// <returns>this builder for method chaining</returns>
-        public ITermMapBuilder SetDataType(Uri dataType);
+        public ITermMapBuilder<T> SetDataType(Uri dataType);
 
         /// <summary>
         /// Returns an instance of TermMap with the specified data given to
         /// this builder.
         /// </summary>
         /// <returns>TermMap instance with populated fields from builder</returns>
-        public ITermMap Build();
+        public T Build();
     }
 }

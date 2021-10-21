@@ -21,9 +21,8 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="AbstractTermMap"/>.
     /// </summary>
-    [TestFixture]
-    [Parallelizable(ParallelScope.All)]
-    public class AbstractTermMapTest
+    [TestFixture(typeof(SubjectMap))]
+    public class AbstractTermMapTest<T> where T : ITermMap
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
@@ -52,7 +51,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Generate_term_without_entity_is_not_possble(ValuedType valuedType)
         {
             MockTermMap.Builder builder = new MockTermMap.Builder(baseUri, mockNode, valuedType);
-            termMap = (MockTermMap)builder.Build();
+            termMap = builder.Build();
             Assert.Throws<ArgumentNullException>(
                 () => termMap.GenerateRDFTerm(null),
                 "Entity is null."
@@ -80,7 +79,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Constant_term_map_ignores_specified_type(INode baseValue, TermType termType, INode expected)
         {
             MockTermMap.Builder builder = new MockTermMap.Builder(baseUri, baseValue, ValuedType.CONSTANT);
-            termMap = (MockTermMap)builder.SetTermType(termType).Build();
+            termMap = builder.SetTermType(termType).Build();
             INode result = termMap.GenerateRDFTerm(mockEntity);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -96,7 +95,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Generate_term_with_entity(ValuedType valuedType, INode baseValue, INode expected)
         {
             MockTermMap.Builder builder = new MockTermMap.Builder(baseUri, baseValue, valuedType);
-            termMap = (MockTermMap)builder.Build();
+            termMap = builder.Build();
             INode result = termMap.GenerateRDFTerm(mockEntity);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -112,7 +111,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Generate_term_with_blank_type_should_return_blank_node(ValuedType valuedType, INode baseValue)
         {
             MockTermMap.Builder builder = new MockTermMap.Builder(baseUri, baseValue, valuedType);
-            termMap = (MockTermMap)builder.SetTermType(TermType.BLANK).Build();
+            termMap = builder.SetTermType(TermType.BLANK).Build();
             NodeType result = termMap.GenerateRDFTerm(mockEntity).NodeType;
             Assert.That(result, Is.EqualTo(NodeType.Blank));
         }
@@ -130,18 +129,17 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Generate_term_using_non_blank_type(ValuedType valuedType, INode baseValue, TermType type, INode expected)
         {
             MockTermMap.Builder builder = new MockTermMap.Builder(baseUri, baseValue, valuedType);
-            termMap = (MockTermMap)builder.SetTermType(type).Build();
+            termMap = builder.SetTermType(type).Build();
             INode result = termMap.GenerateRDFTerm(mockEntity);
             Assert.That(result, Is.EqualTo(expected));
         }
 
         [Test]
-        [NonParallelizable]
         public void Generate_column_valued_IRI_without_base_URI_is_not_possible()
         {
             INode value = nodeFactory.CreateLiteralNode("REFERENCE");
             MockTermMap.Builder builder = new MockTermMap.Builder(null, value, ValuedType.COLUMN);
-            termMap = (MockTermMap)builder.SetTermType(TermType.IRI).Build();
+            termMap = builder.SetTermType(TermType.IRI).Build();
             Assert.Throws<ArgumentException>(
                 () => termMap.GenerateRDFTerm(mockEntity),
                 "Failed to generate new term with base uri and value."
