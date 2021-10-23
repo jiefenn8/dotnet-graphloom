@@ -35,7 +35,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         private readonly ISet<IUriNode> classes = new HashSet<IUriNode>();
 
         /// <inheritdoc/>
-        public SubjectMap(Builder builder) : base(builder) 
+        private SubjectMap(Builder builder) : base(builder) 
         {
             classes = builder.Classes;
         }
