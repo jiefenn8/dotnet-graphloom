@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace GraphLoom.UnitTest.Mapper.Configuration
 {
-    [TestFixture(typeof(PredicateMap))]
+    [TestFixture(typeof(PredicateMapV1))]
     public class IRelationConfigTest<T> where T : IRelationConfig, new()
     {
         private IRelationConfig _relationConfig;
