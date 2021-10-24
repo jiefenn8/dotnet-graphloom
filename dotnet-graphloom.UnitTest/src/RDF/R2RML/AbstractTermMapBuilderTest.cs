@@ -20,13 +20,13 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="AbstractTermMapBuilder"/>.
     /// </summary>
-    [TestFixture(typeof(SubjectMap.Builder))]
-    [Parallelizable(ParallelScope.All)]
-    public class AbstractTermMapBuilderTest<T> where T : ITermMapBuilder<MockTermMap>
+    [TestFixture(typeof(SubjectMap.Builder), typeof(SubjectMap))]
+    [TestFixture(typeof(PredicateMap.Builder), typeof(PredicateMap))]
+    public class AbstractTermMapBuilderTest<T, K> where T : ITermMapBuilder<K> where K : ITermMap
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
-        private ITermMapBuilder<MockTermMap> builder; 
+        private ITermMapBuilder<K> builder; 
 
         [SetUp]
         public void SetUp()
@@ -91,7 +91,6 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             yield return new TestCaseData(TermType.UNDEFINED, ValuedType.TEMPLATE);
         }
 
-        [NonParallelizable]
         [Test, TestCaseSource(nameof(TermTypeArguments))]
         public void Create_instance_term_type_should_return_expected(TermType termType, ValuedType valuedType)
         {
@@ -109,7 +108,6 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             yield return new TestCaseData(ValuedType.TEMPLATE);
         }
 
-        [NonParallelizable]
         [Test, TestCaseSource(nameof(valuedTermArguments))]
         public void Create_instance_language_should_return_expected(ValuedType valuedType)
         {
