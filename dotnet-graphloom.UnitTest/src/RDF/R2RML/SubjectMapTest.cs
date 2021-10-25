@@ -20,8 +20,9 @@ using VDS.RDF;
 namespace GraphLoom.UnitTest.RDF.R2RML
 {
     /// <summary>
-    /// Unit test class for <see cref="SubjectMap"/> and its iBuilder.
+    /// Unit test class for <see cref="SubjectMap"/> and its Builder.
     /// </summary>
+    [TestFixture]
     public class SubjectMapTest
     {
         private NodeFactory nodeFactory;
@@ -48,7 +49,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             yield return new TestCaseData(
                 ValuedType.COLUMN,
                 nodeFactory.CreateLiteralNode("REFERENCE"),
-                nodeFactory.CreateUriNode(UriFactory.Create("http://data.example.com/VALUE"))
+                nodeFactory.CreateUriNode(UriFactory.Create("http://example.com/VALUE"))
                 );
         }
 
@@ -56,9 +57,10 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Generate_term_with_no_type(ValuedType valuedType, INode baseValue, INode expected)
         {
             Mock.Get(mockEntity).Setup(f => f.GetPropertyValue(It.Is<string>(i => i.Equals("REFERENCE"))))
-                .Returns("http://data.example.com/VALUE");
-            SubjectMap.Builder builder = new SubjectMap.Builder(baseUri, baseValue, valuedType);
-
+                .Returns("VALUE");
+            subjectMap = new SubjectMap.Builder(baseUri, baseValue, valuedType).Build();
+            INode result = subjectMap.GenerateEntityTerm(mockEntity);
+            Assert.That(result, Is.EqualTo(expected));
         }
 
         public static IEnumerable<TestCaseData> ValuedTermArguments()
