@@ -9,6 +9,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using GraphLoom.Mapper.Core.InputSource;
@@ -267,6 +268,46 @@ namespace GraphLoom.Mapper.RDF.R2RML
             }
 
             return factory.CreateLiteralNode(term);
+        }
+
+        /// <summary>
+        /// Returns true if valued type of this term map instance is 
+        /// <see cref="ValuedType.TEMPLATE"/>. Otherwise return false.
+        /// </summary>
+        /// <returns>true if template, otherwise false</returns>
+        protected bool IsTemplateValuedType()
+        {
+            return valuedType.Equals(ValuedType.TEMPLATE) ? true : false;
+        }
+
+        /// <summary>
+        /// Returns true if valued type of this term map instance is 
+        /// <see cref="ValuedType.COLUMN"/>.. Otherwise return false.
+        /// </summary>
+        /// <returns>true if column, otherwise false</returns>
+        protected bool IsColumnValuedType()
+        {
+            return valuedType.Equals(ValuedType.COLUMN) ? true : false;
+        }
+
+        /// <summary>
+        /// Returns true if valued type of this term map instance is 
+        /// <see cref="ValuedType.CONSTANT"/>. Otherwise return false.
+        /// </summary>
+        /// <returns>true if constant, otherwise false</returns>
+        protected bool IsConstantValuedType()
+        {
+            return valuedType.Equals(ValuedType.CONSTANT) ? true : false;
+        }
+
+        /// <summary>
+        /// Returns true if term is a special literal that is either a data
+        /// or language typed literal. Otherwise return false.
+        /// </summary>
+        /// <returns>true if term is a special literal, otherwise false</returns>
+        protected bool IsSpecialLiteral()
+        {
+            return (lang.Any() || dataType != null) ? true : false;
         }
     }
 }

@@ -21,8 +21,9 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="AbstractTermMap"/>.
     /// </summary>
-    [TestFixture(typeof(SubjectMap))]
-    [TestFixture(typeof(PredicateMap))]
+    [TestFixture(typeof(SubjectMapFuture))]
+    [TestFixture(typeof(PredicateMapFuture))]
+    [TestFixture(typeof(ObjectMapFuture))]
     public class AbstractTermMapTest<T> where T : ITermMap
     {
         private NodeFactory nodeFactory;
