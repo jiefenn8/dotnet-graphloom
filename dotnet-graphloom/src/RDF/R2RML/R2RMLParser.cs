@@ -116,7 +116,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
                 IEnumerable<Triple> predicateList = graph.GetTriplesWithSubjectPredicate(pom.Object, graph.GetUriNode("rr:predicate"));
                 if (predicateList.Count() != 1) throw new ArgumentOutOfRangeException("R2RML Rule: Must have ONE Predicate in PredicateObjectMap.");
                 Triple predicate = predicateList.First();
-                PredicateMapV1 predicateMap = new PredicateMapV1();
+                PredicateMap predicateMap = new PredicateMap();
                 string relationNameQName;
                 graph.NamespaceMap.ReduceToQName(((IUriNode)predicate.Object).Uri.ToString(), out relationNameQName);
                 predicateMap.SetRelationName(relationNameQName);

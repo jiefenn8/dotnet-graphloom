@@ -19,14 +19,14 @@ using VDS.RDF;
 namespace GraphLoom.UnitTest.RDF.R2RML
 {
     /// <summary>
-    /// Unit test class for <see cref="PredicateMap"/> and its iBuilder.
+    /// Unit test class for <see cref="PredicateMapFuture"/> and its iBuilder.
     /// </summary>
     public class PredicateMapTest
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
         private IEntity mockEntity;
-        private PredicateMap predicateMap;
+        private PredicateMapFuture predicateMap;
 
         [SetUp]
         public void SetUp()
@@ -56,7 +56,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         {
             Mock.Get(mockEntity).Setup(f => f.GetPropertyValue(It.Is<string>(i => i.Equals("REFERENCE"))))
                 .Returns("http://data.example.com/VALUE");
-            SubjectMap.Builder builder = new SubjectMap.Builder(baseUri, baseValue, valuedType);
+            SubjectMapFuture.Builder builder = new SubjectMapFuture.Builder(baseUri, baseValue, valuedType);
 
         }
 
@@ -70,7 +70,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         [Test, TestCaseSource(nameof(ValuedTermArguments))]
         public void Generate_term_with_null_entity_is_not_possible(ValuedType valuedType)
         {
-            PredicateMap.Builder builder = new PredicateMap.Builder(baseUri, Mock.Of<INode>(), valuedType);
+            PredicateMapFuture.Builder builder = new PredicateMapFuture.Builder(baseUri, Mock.Of<INode>(), valuedType);
             predicateMap = builder.Build();
             Assert.Throws<ArgumentNullException>(
                 () => predicateMap.GenerateRelationTerm(null),

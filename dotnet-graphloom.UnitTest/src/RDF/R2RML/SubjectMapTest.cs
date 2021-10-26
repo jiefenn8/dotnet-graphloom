@@ -20,7 +20,7 @@ using VDS.RDF;
 namespace GraphLoom.UnitTest.RDF.R2RML
 {
     /// <summary>
-    /// Unit test class for <see cref="SubjectMap"/> and its Builder.
+    /// Unit test class for <see cref="SubjectMapFuture"/> and its Builder.
     /// </summary>
     [TestFixture]
     public class SubjectMapTest
@@ -28,7 +28,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
         private IEntity mockEntity;
-        private SubjectMap subjectMap;
+        private SubjectMapFuture subjectMap;
         
         [SetUp]
         public void SetUp()
@@ -58,7 +58,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         {
             Mock.Get(mockEntity).Setup(f => f.GetPropertyValue(It.Is<string>(i => i.Equals("REFERENCE"))))
                 .Returns("VALUE");
-            subjectMap = new SubjectMap.Builder(baseUri, baseValue, valuedType).Build();
+            subjectMap = new SubjectMapFuture.Builder(baseUri, baseValue, valuedType).Build();
             INode result = subjectMap.GenerateEntityTerm(mockEntity);
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -73,7 +73,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         [Test, TestCaseSource(nameof(ValuedTermArguments))]
         public void Add_null_class_is_not_possible(ValuedType valuedType)
         {
-            SubjectMap.Builder builder = new SubjectMap.Builder(baseUri, Mock.Of<INode>(), valuedType);
+            SubjectMapFuture.Builder builder = new SubjectMapFuture.Builder(baseUri, Mock.Of<INode>(), valuedType);
             Assert.Throws<ArgumentNullException>(() => builder.AddEntityClasses(null));
         }
 
@@ -83,7 +83,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         {
             IUriNode node = nodeFactory.CreateUriNode(UriFactory.Create("http://data.example.com/test"));
             ISet<IUriNode> collection = new HashSet<IUriNode> { node };
-            SubjectMap.Builder builder = new SubjectMap.Builder(baseUri, Mock.Of<INode>(), valuedType);
+            SubjectMapFuture.Builder builder = new SubjectMapFuture.Builder(baseUri, Mock.Of<INode>(), valuedType);
             subjectMap = builder.AddEntityClasses(collection).Build();
             bool result = subjectMap.ListEntityClasses().Contains(node);
             Assert.IsTrue(result);
@@ -92,8 +92,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         [Test, TestCaseSource(nameof(ValuedTermArguments))]
         public void When_no_class_given_should_return_empty_collection(ValuedType valuedType)
         {
-            SubjectMap.Builder builder = new SubjectMap.Builder(baseUri, Mock.Of<INode>(), valuedType);
-            subjectMap = builder.Build();
+            subjectMap = new SubjectMapFuture.Builder(baseUri, Mock.Of<INode>(), valuedType).Build();
             bool result = subjectMap.ListEntityClasses().Any();
             Assert.IsFalse(result);
         }

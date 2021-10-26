@@ -22,7 +22,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
     /// interface. This term map will return either a rr:IRI or rr:BlankNode 
     /// for its main term.
     /// </summary>
-    public class SubjectMap : AbstractTermMap<SubjectMap>, IPropertyMap
+    public class SubjectMapFuture : AbstractTermMap<SubjectMapFuture>, IPropertyMap
     {
         /// <summary>
         /// Unique identifier for this instance.
@@ -35,7 +35,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         private readonly ISet<IUriNode> classes = new HashSet<IUriNode>();
 
         /// <inheritdoc/>
-        private SubjectMap(Builder builder) : base(builder) 
+        private SubjectMapFuture(Builder builder) : base(builder) 
         {
             classes = builder.Classes;
         }
@@ -60,9 +60,9 @@ namespace GraphLoom.Mapper.RDF.R2RML
         }
 
         /// <summary>
-        /// Builder class for <see cref="SubjectMap"/>.
+        /// Builder class for <see cref="SubjectMapFuture"/>.
         /// </summary>
-        public class Builder : AbstractTermMapBuilder<SubjectMap>, ITermMapBuilder<SubjectMap>
+        public class Builder : AbstractTermMapBuilder<SubjectMapFuture>, ITermMapBuilder<SubjectMapFuture>
         {
             /// <inheritdoc/>
             public Builder(IUriNode baseUri, INode baseValue, ValuedType valuedType) : base(baseUri, baseValue, valuedType) { }
@@ -85,9 +85,9 @@ namespace GraphLoom.Mapper.RDF.R2RML
             public ISet<IUriNode> Classes { get; private set; } = new HashSet<IUriNode>();
 
             /// <inheritdoc/>
-            public override SubjectMap Build()
+            public override SubjectMapFuture Build()
             {
-                return new SubjectMap(this);
+                return new SubjectMapFuture(this);
             }
         }
     }
