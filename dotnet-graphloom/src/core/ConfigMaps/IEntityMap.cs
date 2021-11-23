@@ -26,17 +26,18 @@ namespace GraphLoom.Mapper.Core.ConfigMaps
         string getIdName();
 
         /// <summary>
-        /// eturns the source map that has the data source and reference required to
-        /// query and map the required data into a graph.
+        /// Returns the source result with the source and query prepareded to be 
+        /// excututed to acquire the result to iterate through. 
         /// </summary>
-        /// <returns>the source map associated with this entity map</returns>
-        ISourceResult GetSource();
+        /// <returns>the source result associated with this entity map</returns>
+        ISourceResult GetSourceResult();
 
         /// <summary>
-        /// 
+        /// Returns generated entity term of this instance. If the term cannot be
+        /// generated, returns null.
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <param name="entity">containing the entity data to generate the term</param>
+        /// <returns>the URI term generated for this entity, otherwise null</returns>
         IUriNode GenerateEntityTerm(IEntity entity);
 
         /// <summary>
