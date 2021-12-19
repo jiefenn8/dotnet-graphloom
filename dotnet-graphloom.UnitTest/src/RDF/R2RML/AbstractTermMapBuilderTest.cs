@@ -27,7 +27,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
-        private ITermMapBuilder<K> builder; 
+        private ITermMapBuilder<K> builder;
 
         [SetUp]
         public void SetUp()
@@ -54,7 +54,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         }
 
         [Test, TestCaseSource(nameof(TermMapArguments))]
-        public void Create_instance_should_return_expected_base_value(INode baseValue, ValuedType valuedType) 
+        public void Create_instance_should_return_expected_base_value(INode baseValue, ValuedType valuedType)
         {
             builder = (T)Activator.CreateInstance(typeof(T), new object[] { baseUri, baseValue, valuedType });
             INode result = builder.BaseValue;

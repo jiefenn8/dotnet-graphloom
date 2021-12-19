@@ -24,7 +24,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// Gets the parent identifier of the join. 
         /// </summary>
         private string Parent { get; }
-        
+
         /// <summary>
         /// Gets the child identifier of the join.
         /// </summary>        

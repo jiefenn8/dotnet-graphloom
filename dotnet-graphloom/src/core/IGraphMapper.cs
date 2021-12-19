@@ -24,7 +24,7 @@ namespace GraphLoom.Mapper
     {
         [Obsolete("This method is deprecated and will be removed in the future. Please use the new (Graph MapToGraph) method.")]
         IGenericGraph MapToGraph(IInputSource source, IMapperConfig config);
-     
+
         [Obsolete("This method is deprecated and will be removed in the future.")]
         Type GetGraphType();
 

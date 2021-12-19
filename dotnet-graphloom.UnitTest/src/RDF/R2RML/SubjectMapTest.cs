@@ -29,7 +29,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         private IUriNode baseUri;
         private IEntity mockEntity;
         private SubjectMapFuture subjectMap;
-        
+
         [SetUp]
         public void SetUp()
         {

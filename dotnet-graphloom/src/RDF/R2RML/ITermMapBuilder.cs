@@ -47,7 +47,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// <summary>
         /// Gets data type for literal generation.
         /// </summary>
-        public Uri DataType{ get; }
+        public Uri DataType { get; }
 
         /// <summary>
         /// Sets the RDF type the TermMap should return after generating an

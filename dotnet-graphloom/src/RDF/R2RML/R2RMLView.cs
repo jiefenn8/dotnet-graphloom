@@ -38,7 +38,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
             /// The payload string value.
             /// </summary>
             public string Payload { get; }
-            
+
             /// <summary>
             /// The sql version that this payload supports if applicable.
             /// </summary>
