@@ -31,7 +31,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// <summary>
         /// Unique indentifier for this instance.
         /// </summary>
-        private readonly Guid guid; 
+        private readonly Guid guid;
 
         /// <summary>
         /// Entity reference containing the query configuration.
@@ -43,7 +43,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// properties to populate and initialise an immutable instance.
         /// </summary>
         /// <param name="builder">the logical table builder to build from</param>
-        private LogicalTable(Builder builder) 
+        private LogicalTable(Builder builder)
         {
             guid = builder.Guid;
             entityReference = builder.EntityReference;
@@ -58,15 +58,15 @@ namespace GraphLoom.Mapper.RDF.R2RML
         /// <returns>the LogicalTable of two Joint SQL tables</returns>
         public LogicalTable AsJointLogicalTable(RefObjectMap refObjectMap)
         {
-            LogicalTable logicalTable = refObjectMap.GetParentTriplesMap().GetSourceMap();
-            return new Builder(this).WithJointQuery(logicalTable, refObjectMap.ListJoinConditions()).Build();
+            LogicalTable logicalTable = (LogicalTable)refObjectMap.ParentTriplesMap.GetSourceResult();
+            return new Builder(this).WithJointQuery(logicalTable, refObjectMap.JoinConditions).Build();
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            return obj is LogicalTable table &&
-                   EqualityComparer<IEntityReference>.Default.Equals(entityReference, table.entityReference);
+            return obj is LogicalTable table
+                   && EqualityComparer<IEntityReference>.Default.Equals(entityReference, table.entityReference);
         }
 
         /// <inheritdoc/>
@@ -146,8 +146,8 @@ namespace GraphLoom.Mapper.RDF.R2RML
                     jointQuery += " WHERE " + BuildJoinsRecursively(joinConditions.GetEnumerator());
                     string parentVersion = EntityReference.GetProperty("sqlVersion");
                     EntityReference = new R2RMLView.Builder(jointQuery, parentVersion).Build();
-                } 
-                catch(InvalidOperationException ex)
+                }
+                catch (InvalidOperationException ex)
                 {
                     throw new ParserException("Expected JoinConditions with joint query creation.", ex);
                 }
@@ -163,7 +163,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
             /// <exception cref="InvalidOperationException">If enumerator has not elements</exception>
             private string BuildJoinsRecursively(IEnumerator<JoinCondition> enumerator)
             {
-                if(!enumerator.MoveNext())
+                if (!enumerator.MoveNext())
                 {
                     throw new InvalidOperationException("Enumerator has no more elements.");
                 }
@@ -187,7 +187,7 @@ namespace GraphLoom.Mapper.RDF.R2RML
             /// <returns>the query prepared for further manipulation</returns>
             private string PrepareQuery(IEntityReference entityReference)
             {
-                if(entityReference is R2RMLView)
+                if (entityReference is R2RMLView)
                 {
                     return "(" + entityReference.GetPayload() + ")";
                 }

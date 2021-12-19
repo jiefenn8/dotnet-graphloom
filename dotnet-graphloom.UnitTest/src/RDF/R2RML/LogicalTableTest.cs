@@ -80,7 +80,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         {
             logicalTable = new LogicalTable.Builder(mockEntityReference).Build();
             JsonConvert.SerializeObject(logicalTable);
-            string result = logicalTable.ToString();  
+            string result = logicalTable.ToString();
             Assert.That(result, Is.EqualTo(result));
         }
 
@@ -96,7 +96,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
         public void Return_builder_when_adding_joint_query()
         {
             Mock.Get(mockEntityReference).Setup(f => f.GetPayload()).Returns("PAYLOAD");
-            JoinCondition mockJoinCondition = new JoinCondition("parent","child");
+            JoinCondition mockJoinCondition = new JoinCondition("parent", "child");
             LogicalTable second = new LogicalTable.Builder(mockEntityReference).Build();
             LogicalTable.Builder builder = new LogicalTable.Builder(mockEntityReference);
             LogicalTable.Builder result = builder.WithJointQuery(second, new HashSet<JoinCondition> { mockJoinCondition });
@@ -111,7 +111,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             Assert.Throws<ParserException>(
                 () => builder.WithJointQuery(second, new HashSet<JoinCondition>()),
                 "Expected JoinConditions with joint query creation."
-                ) ;
+                );
         }
     }
 }
