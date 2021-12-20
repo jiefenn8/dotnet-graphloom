@@ -54,14 +54,14 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             Assert.That(result.ToString(), Is.EqualTo(guid));
         }
 
-        private static IEnumerable<TestCaseData> joinConditionArguments()
+        private static IEnumerable<TestCaseData> JoinConditionArguments()
         {
             IEntityMap mockParentTriplesMap = Mock.Of<IEntityMap>();
             yield return new TestCaseData(new RefObjectMap.Builder(mockParentTriplesMap).AddJoinCondition("PARENT", "CHILD"), true);
             yield return new TestCaseData(new RefObjectMap.Builder(mockParentTriplesMap), false);
         }
 
-        [Test, TestCaseSource(nameof(joinConditionArguments))]
+        [Test, TestCaseSource(nameof(JoinConditionArguments))]
         public void Return_expected_evaluation_when_checking_for_join_condition(RefObjectMap.Builder builder, bool expected)
         {
             bool result = builder.Build().HasJoinConditions();
@@ -101,14 +101,14 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             Assert.Throws<ArgumentNullException>(() => new RefObjectMap.Builder(null).Build());
         }
 
-        private static IEnumerable<TestCaseData> JoinConditionArguments()
+        private static IEnumerable<TestCaseData> JoinConditionInvalidArguments()
         {
             yield return new TestCaseData(null, "CHILD");
             yield return new TestCaseData("PARENT", null);
             yield return new TestCaseData(null, null);
         }
 
-        [Test, TestCaseSource(nameof(JoinConditionArguments))]
+        [Test, TestCaseSource(nameof(JoinConditionInvalidArguments))]
         public void Join_condition_with_no_value_is_not_possible(string parent, string child)
         {
             RefObjectMap.Builder builder = new RefObjectMap.Builder(mockParentTriplesMap);
