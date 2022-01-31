@@ -24,7 +24,7 @@ namespace GraphLoom.Mapper.Core
         /// mapping document.
         /// </summary>
         /// <returns>the map containing all namespace prefixes and their URIs</returns>
-        Dictionary<string, string> GetNamespaceMap();
+        IDictionary<string, string> GetNamespaceMap();
 
         /// <summary>
         /// Returns all unique entity map that exists in the configuration
