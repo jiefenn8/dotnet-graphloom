@@ -21,7 +21,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="ObjectMapFuture"/> and its Builder.
     /// </summary>
-    public class ObjectMapTest
+    public class ObjectMapFutureTest
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;

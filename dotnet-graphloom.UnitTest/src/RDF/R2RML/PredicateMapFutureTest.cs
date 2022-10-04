@@ -21,7 +21,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="PredicateMapFuture"/> and its iBuilder.
     /// </summary>
-    public class PredicateMapTest
+    public class PredicateMapFutureTest
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;

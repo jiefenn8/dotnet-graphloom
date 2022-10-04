@@ -23,7 +23,7 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// Unit test class for <see cref="SubjectMapFuture"/> and its Builder.
     /// </summary>
     [TestFixture]
-    public class SubjectMapTest
+    public class SubjectMapFutureTest
     {
         private NodeFactory nodeFactory;
         private IUriNode baseUri;
