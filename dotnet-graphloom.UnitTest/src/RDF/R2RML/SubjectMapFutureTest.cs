@@ -23,19 +23,13 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// Unit test class for <see cref="SubjectMapFuture"/> and its Builder.
     /// </summary>
     [TestFixture]
-    public class SubjectMapFutureTest
+    public class SubjectMapFutureTest : AbstractTermMapTest<SubjectMapFuture>
     {
-        private NodeFactory nodeFactory;
-        private IUriNode baseUri;
-        private IEntity mockEntity;
         private SubjectMapFuture subjectMap;
 
-        [SetUp]
-        public void SetUp()
+        protected override ITermMapBuilder<SubjectMapFuture> GetTermMapBuilder(IUriNode baseUri, INode baseValue, ValuedType valuedType)
         {
-            nodeFactory = new NodeFactory();
-            mockEntity = Mock.Of<IEntity>();
-            baseUri = nodeFactory.CreateUriNode(UriFactory.Create("http://example.com/"));
+            return new SubjectMapFuture.Builder(baseUri, baseValue, valuedType);
         }
 
         public static IEnumerable<TestCaseData> TermMapArguments()
@@ -61,13 +55,6 @@ namespace GraphLoom.UnitTest.RDF.R2RML
             subjectMap = new SubjectMapFuture.Builder(baseUri, baseValue, valuedType).Build();
             INode result = subjectMap.GenerateEntityTerm(mockEntity);
             Assert.That(result, Is.EqualTo(expected));
-        }
-
-        public static IEnumerable<TestCaseData> ValuedTermArguments()
-        {
-            yield return new TestCaseData(ValuedType.CONSTANT);
-            yield return new TestCaseData(ValuedType.COLUMN);
-            yield return new TestCaseData(ValuedType.TEMPLATE);
         }
 
         [Test, TestCaseSource(nameof(ValuedTermArguments))]

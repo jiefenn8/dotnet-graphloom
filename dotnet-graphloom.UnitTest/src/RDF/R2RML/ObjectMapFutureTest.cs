@@ -21,19 +21,13 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="ObjectMapFuture"/> and its Builder.
     /// </summary>
-    public class ObjectMapFutureTest
+    public class ObjectMapFutureTest : AbstractTermMapTest<ObjectMapFuture>
     {
-        private NodeFactory nodeFactory;
-        private IUriNode baseUri;
-        private IEntity mockEntity;
         private ObjectMapFuture objectMap;
 
-        [SetUp]
-        public void SetUp()
+        protected override ITermMapBuilder<ObjectMapFuture> GetTermMapBuilder(IUriNode baseUri, INode baseValue, ValuedType valuedType)
         {
-            nodeFactory = new NodeFactory();
-            mockEntity = Mock.Of<IEntity>();
-            baseUri = nodeFactory.CreateUriNode(UriFactory.Create("http://example.com"));
+            return new ObjectMapFuture.Builder(baseUri, baseValue, valuedType);   
         }
 
         public static IEnumerable<TestCaseData> TermMapArguments()

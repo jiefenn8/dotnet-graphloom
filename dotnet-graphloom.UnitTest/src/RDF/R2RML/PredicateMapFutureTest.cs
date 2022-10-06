@@ -21,19 +21,13 @@ namespace GraphLoom.UnitTest.RDF.R2RML
     /// <summary>
     /// Unit test class for <see cref="PredicateMapFuture"/> and its iBuilder.
     /// </summary>
-    public class PredicateMapFutureTest
+    public class PredicateMapFutureTest : AbstractTermMapTest<PredicateMapFuture>
     {
-        private NodeFactory nodeFactory;
-        private IUriNode baseUri;
-        private IEntity mockEntity;
         private PredicateMapFuture predicateMap;
 
-        [SetUp]
-        public void SetUp()
+        protected override ITermMapBuilder<PredicateMapFuture> GetTermMapBuilder(IUriNode baseUri, INode baseValue, ValuedType valuedType)
         {
-            nodeFactory = new NodeFactory();
-            mockEntity = Mock.Of<IEntity>();
-            baseUri = nodeFactory.CreateUriNode(UriFactory.Create("http://example.com/"));
+            return new PredicateMapFuture.Builder(baseUri, baseValue, valuedType);
         }
 
         public static IEnumerable<TestCaseData> TermMapArguments()
