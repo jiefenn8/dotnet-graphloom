@@ -54,13 +54,6 @@ namespace GraphLoom.UnitTest.RDF.R2RML
 
         }
 
-        public static IEnumerable<TestCaseData> ValuedTermArguments()
-        {
-            yield return new TestCaseData(ValuedType.CONSTANT);
-            yield return new TestCaseData(ValuedType.COLUMN);
-            yield return new TestCaseData(ValuedType.TEMPLATE);
-        }
-
         [Test, TestCaseSource(nameof(ValuedTermArguments))]
         public void Generate_term_with_null_entity_is_not_possible(ValuedType valuedType)
         {
